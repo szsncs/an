@@ -1,3 +1,14 @@
+
+var https="https://szsncs.github.io/an/js/"
+var js=".js";
+function getIndex_JS(){
+	var index_js = [https+"jquery-2.1.4.min"+js,
+			https+"summer"+js,
+			https+"Frameworks/iuapmobile.frameworks.core"+js,
+			https+"Frameworks/iuapmobile.frameworks.ui"+js];
+	return index_js;				
+}
+
 /**
  * 调用接口方法 对$summer.callAction({})的封装 
  * @param {Object} viewid
