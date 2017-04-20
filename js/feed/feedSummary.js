@@ -19,7 +19,7 @@ var feedSummary = {
 		});
 		//刷新按钮
 		$(".sk_refresh").click(function(){
-			alert(1122221);
+			alert("缓存");
 			feedSummary.isupdate=true;
 			feedSummary.init();
 		});
