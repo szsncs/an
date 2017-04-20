@@ -1,6 +1,6 @@
 ﻿//here is your code...
 summerready = function () {
-		alert(324);
+		alert(666);
 		//事件绑定
 		login.bindEvent();
 		login.checkt();
