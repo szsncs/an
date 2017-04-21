@@ -326,13 +326,14 @@ function getFeedArrived_js(url){
 }
 
 function getMain_js(url){//引入已到饲料查询js	5
-	var main_js = [https+jquery_2_1_4+js,
-			https+url+js,
-			https+knockout_2_2_0+js,
-		        https+islider+js,
-			https+frameworks_listgroup+js
-			];
-	return yonyou_js.concat(main_js);;				
+var jquery =[https+jquery_2_1_4+js]
+	var main_js = [
+		https+url+js,
+		https+knockout_2_2_0+js,
+		https+islider+js,
+		https+frameworks_listgroup+js
+		];
+	return jquery.concat(yonyou_js.concat(main_js));					
 }
 
 function getIndex_js(url){//引入登录界面js	2
