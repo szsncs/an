@@ -16,7 +16,7 @@ var frameworks_sortlist="Frameworks/iuapmobile.frameworks.sortlist-2.7.0";
 var common="common";
 var font="font";
 
-var yonyou_js=[summer,frameworks_core,frameworks_ui];
+var yonyou_js=[https+summer+js,https+frameworks_core+js,https+frameworks_ui+js];
 
 
 function getEquipmentMaintenanceInfo_js(url){//引入已到饲料查询js	7
