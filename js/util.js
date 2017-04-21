@@ -332,6 +332,7 @@ function getMain_js(url){//引入已到饲料查询js	5
 			https+knockout_2_2_0+js,
 			https+frameworks_core+js,
 			https+frameworks_ui+js,
+		       https+islider+js,
 			https+frameworks_listgroup+js
 			];
 	return main_js;				
