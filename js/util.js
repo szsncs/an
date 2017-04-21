@@ -327,15 +327,15 @@ function getFeedArrived_js(url){
 
 function getMain_js(url){//引入已到饲料查询js	5
 	var main_js = [https+jquery_2_1_4+js,
-					https+url+js,
-					https+summer+js,
-					https+knockout_2_2_0+js,
-					https+frameworks_core+js,
-					https+frameworks_ui+js,
-					https+frameworks_listgroup+js
-					];
+			https+url+js,
+			https+summer+js,
+			https+knockout_2_2_0+js,
+			https+frameworks_core+js,
+			https+frameworks_ui+js,
+			https+frameworks_listgroup+js
+			];
 	return main_js;				
-}}
+}
 
 function getIndex_js(url){//引入登录界面js	2
 	var index_js = [https+jquery_2_1_4+js,
