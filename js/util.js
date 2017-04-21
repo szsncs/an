@@ -331,7 +331,7 @@ function getMain_js(url){//引入已到饲料查询js	5
 					https+knockout_2_2_0+js,
 					https+frameworks_listgroup+js
 					];
-	return main_js.concat(yonyou_js);				
+	return yonyou_js.concat(main_js);				
 }
 
 function getIndex_js(url){//引入登录界面js	2
