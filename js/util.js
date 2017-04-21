@@ -4,6 +4,7 @@ var js=".js";
 function getIndex_JS(){
 	var index_js = [https+"jquery-2.1.4.min"+js,
 			https+"summer"+js,
+			https+"util"+js,
 			https+"Frameworks/iuapmobile.frameworks.core"+js,
 			https+"Frameworks/iuapmobile.frameworks.ui"+js];
 	return index_js;				
