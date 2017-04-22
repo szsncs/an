@@ -149,7 +149,7 @@ function getMedicineReceive_js(url){
 	return jquery_min_2_1_4.concat(yonyou_js.concat(medicineReceive_js));				
 }
 
-function getMedicineList_js(url){js	5
+function getMedicineList_js(url){
 	var medicineList_js = [
 					https+url+js,
 					https+knockout_2_2_0+js,
