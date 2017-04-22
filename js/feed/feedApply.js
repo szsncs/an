@@ -148,12 +148,15 @@ var feedApply = {
 	 */
 	delete:function(){
 		var pk_total_info_h = feedApply.pk_total_info_h ;
+		var data = $cache.read("logininfo");
+		var lonininfo = JSON.parse(data);
 		if (pk_total_info_h && pk_total_info_h.length>0){
 			var totalinfo ={
 				pk_total_info_h:pk_total_info_h
 			};
 			var json = {
-				totalinfo:totalinfo
+				totalinfo:totalinfo,
+				logininfo: lonininfo
 			}
 			summer.showProgress({
 	            "title" : "加载中..."
@@ -190,11 +193,14 @@ var feedApply = {
 	 *收回
 	 */
 	unSubmit:function(){
+		var data = $cache.read("logininfo");
+		var lonininfo = JSON.parse(data);
 		var totalinfo ={
 			pk_total_info_h:feedApply.pk_total_info_h
 		};
 		var json = {			
-			totalinfo:totalinfo
+			totalinfo:totalinfo,
+			logininfo:lonininfo
 		}
 		summer.showProgress({
             "title" : "加载中..."

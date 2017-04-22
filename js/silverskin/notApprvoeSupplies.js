@@ -151,7 +151,7 @@ function callBack(args) {
 	}
 }
 
-function erresg(arg) {
+function erresg(args) {
 	summer.hideProgress();
 	alert("系统运行异常："+JSON.stringify(args));
 }

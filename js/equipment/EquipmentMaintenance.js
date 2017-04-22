@@ -118,8 +118,11 @@ var Equipment={
 		
 	},
 	addSecond : function(pk_equip){
+		var data = $cache.read("logininfo");
+		var lonininfo = JSON.parse(data);
 		var json = {
 			pk_equip : pk_equip,
+			logininfo : lonininfo
 		}
 		callAction(Equipment.viewid,"queryEquip",json,"changeSelectcallBack");
 	},
@@ -248,8 +251,11 @@ var Equipment={
 	changeSelect : function(){//子项初始化
 		var pk_equip=$("#select_type").find("option:selected").attr("id");
 		Equipment.pk_equipment=pk_equip;
+		var data = $cache.read("logininfo");
+		var lonininfo = JSON.parse(data);
 		var json = {
 			pk_equip : pk_equip,
+			logininfo : lonininfo
 		}
 		callAction(Equipment.viewid,"queryEquip",json,"changeSelectcallBack");
 	},

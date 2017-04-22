@@ -7,9 +7,9 @@ var list = {
 	viewid : "com.sunnercn.illnessChange.illnessChangeController",
 	init : function(){
 		var data = $cache.read("logininfo");
-		var lonininfo = JSON.parse(data);
+		var logininfo = JSON.parse(data);
 		var json = {
-			logininfo : lonininfo,
+			logininfo : logininfo,
 		}
 		summer.showProgress({
 			"title" : "加载中..."

@@ -156,13 +156,15 @@ var notApprInfo = {
 	 *  删除 
 	 */
 	delete:function(){
+		var data = $cache.read("logininfo");
+		var logininfo = JSON.parse(data);
 		var pk_total_info_h = notApprInfo.pk_total_info_h ;
 		if (pk_total_info_h && pk_total_info_h.length>0){
 			var totalinfo ={
 				pk_total_info_h:pk_total_info_h
 			};
 			var json = {
-				
+				logininfo:logininfo,
 				totalinfo:totalinfo
 			}
 			summer.showProgress({
@@ -200,11 +202,14 @@ var notApprInfo = {
 	 *收回
 	 */
 	unSubmit:function(){
+		var data = $cache.read("logininfo");
+		var logininfo = JSON.parse(data);
 		var totalinfo ={
 			pk_total_info_h:notApprInfo.pk_total_info_h
 		};
 		var json = {			
-			totalinfo:totalinfo
+			totalinfo:totalinfo,
+			logininfo:logininfo
 		}
 		summer.showProgress({
             "title" : "加载中..."
@@ -239,7 +244,6 @@ var notApprInfo = {
 				+'					鸡舍：<span>'+billinfo[i].henhouse_name+'</span>'
 				+'				</div>'
 				+'				<div class="um-xs-6">'
-				//+'					数量：<input type="number"class="apply_num" id="'+billinfo[i].pk_henhouse+'" henhouse_name="'+billinfo[i].henhouse_name+'" value="0" style="width: 30%"/>吨'
 				+ '			数量：<input type="number" class="disable applyNum apply_num" id="'+billinfo[i].pk_henhouse+'" henhouse_name="'+billinfo[i].henhouse_name+'"  value="0" style="width: 42%;height:25px;" onblur="if(value ==\'\'){value=\'0\'}" '
 				+ '			onfocus="if(value ==\'0\'){value =\'\'}"'
 			    + '			onkeyup="value=value.replace(\/[^\\d\\.]/g,\'\')" onblur="value=value.replace(\/[^\\d\\.]/g,\'\')"/>吨'

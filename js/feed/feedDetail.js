@@ -17,7 +17,7 @@ var feedDetails = {
 					pk_apply:pk_apply
 				}
 				var json= {
-					lonininfo:lonininfo,
+					logininfo:lonininfo,
 					billinfo:billinfo
 				}
 				summer.showProgress({

@@ -9,10 +9,12 @@ summerready = function () {
                 document.addEventListener("backbutton", eventBackButton, false); // 返回键 
                
         } 
+          
 			
         // 返回键 
+        
         function eventBackButton() { 
-            
+             UM.alert('5秒内再次点击返回键将退出应用!'); 
              alert('5秒内再次点击返回键将退出应用!'); 
             document.removeEventListener("backbutton", eventBackButton, false); // 注销返回键 
             document.addEventListener("backbutton", exitApp, false);//绑定退出事件 
@@ -30,10 +32,13 @@ summerready = function () {
 		main.bindEvent();
 		//加载第一个页面
 		main.init();
+	//$summer.byId("content").innerHTML += "<h1 style='text-align: center'>Hello friends, welcome to touch the summer frame!</h1><h2 style='text-align: center'>The frame update at " +(new Date()).toLocaleString()+"</h2>";
 };
 function callBack(arg){
+	//UM.alert(JSON.stringify(arg));
 	if(arg.status == "0"){
 		main.initMainPage(arg.data);
+		main.initMyPage(arg.data);
 	}else{
 		alert(arg.message);
 	}
@@ -51,7 +56,6 @@ var main = {
 	/**
 	 * bindEvent 页面事件
 	 */
-	viewid : "com.sunnercn.login.LoginController",
 	bindEvent: function () {
 		 $('#footer>a').click(function(){
 		 	var a=['数智圣农','数智圣农','我'];
@@ -62,7 +66,10 @@ var main = {
 			$('#header h3').html(a[num]);
 		});	
 		$("#logoff").click(function(){
-			summer.closeWin();
+			summer.openWin({
+				"id" : 'index',
+				"url" : 'index.html',
+			});
 		}); 
 	},
 	init:function(){
@@ -74,7 +81,14 @@ var main = {
 			pk_corp : pk_corp ,
 			username : username
 		}
-		callAction(main.viewid,"role",json,"callBack");
+		$service.callAction({
+			"viewid" : "com.sunnercn.login.LoginController", //后台带包名的Controller名
+			"action" : "role", //方法名,
+			"params" : json, //自定义参数
+			"callback" : "callBack()", //请求回来后执行的ActionID
+			"error" : "erresg()"//失败回调的ActionId
+		});
+	    
 	},
 	//应用界面加载
 	initMainPage:function(arg){
@@ -92,13 +106,11 @@ var main = {
 		var userhtml = '<label class="um-label um-box-justify"><div style="padding-left: 15px;">'+userChang+'，'+ username+'，你好!</div> </label>';
 		$("#apply").append(userhtml);
 		
-		$(".login_name").html(username);
-		$(".hennery_name").html(userChang);
-		
 		//2.3 加载场舍数据
 		main.loadChickenFarm(arg);
 		//2.4 加载应用图标
 		main.loadapp(arg.app);
+		
 	},
 	loadapp:function(appArray){
 		var list =appArray;
@@ -141,7 +153,7 @@ var main = {
 				  //+'<img src="../img/btn/'+funcode+'.png">'
 				  +'</div>'
 				  +'</div>'
-                  +' <a href="#" class="w85 h40 um-box-center click" funcode="'+list[i].id+'"  dataurl="'+list[i].url +'">'             
+                  +' <a href="#" class="w85 h40 um-box-center click" dataurl="'+list[i].url +'">'             
                   +' <div>'                                          
                   +' <div class="um-black f14"> '+str+' </div>'                      
                   +' </div>'                          
@@ -159,15 +171,11 @@ var main = {
 		$("#apply").append(html);
 		$(".um-click").click(function(){
 			var str =$(this).find('a').attr("dataurl");
-			var funcode=$(this).find('a').attr("funcode");
 			var url = 'html'+str;
 			
 			summer.openWin({
 	            "id" : str,
-	            "url" : url,
-	            pageParam: {
-			        "type": funcode
-			    }
+	            "url" : url
 	        });
 		});
 	},
@@ -258,8 +266,3 @@ var main = {
 	initMessagePage:function(){
 
 	}
-	
-};
-
-
-	

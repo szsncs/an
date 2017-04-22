@@ -285,9 +285,12 @@ var illness = {
 	},
 	changeSelect : function(id,tag){//下级下拉选初始化
 		var illness_item=$(id+tag).find("option:selected").attr("id");
+		var data = $cache.read("logininfo");
+		var logininfo = JSON.parse(data);
 		var json = {
 			illness_item : illness_item,
-			tag : tag
+			tag : tag,
+			logininfo : logininfo
 		}
 		callAction(illness.viewid,"getItem",json,"changeSelectcallBack");
 	},

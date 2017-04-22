@@ -161,12 +161,15 @@ var feedApply = {
 	 */
 	delete:function(){
 		var pk_total_info_h = feedApply.pk_total_info_h ;
+		var data = $cache.read("logininfo");
+		var logininfo = JSON.parse(data);
 		if (pk_total_info_h && pk_total_info_h.length>0){
 			var totalinfo ={
 				pk_total_info_h:pk_total_info_h
 			};
 			var json = {
-				totalinfo:totalinfo
+				totalinfo:totalinfo,
+				logininfo:logininfo
 			}
 			summer.showProgress({
 	            "title" : "加载中..."

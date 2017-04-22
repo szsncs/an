@@ -190,7 +190,7 @@ var deathElimination = {
 	},
 	initInfoLoadData : function(){
 		var data = $cache.read("logininfo");
-			var lonininfo = JSON.parse(data);
+		var lonininfo = JSON.parse(data);
 			var json = {
 				date:summer.pageParam.date,
 				batch:summer.pageParam.batch,

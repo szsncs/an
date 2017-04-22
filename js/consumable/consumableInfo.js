@@ -373,8 +373,11 @@ var consumable={
 		$("#select_type").html(html);
 	},
 	addSecond : function(pk_equip){//添加二级列表选择项
+		var data = $cache.read("logininfo");
+		var logininfo = JSON.parse(data);//登录信息
 		var json = {
 			pk_equip : pk_equip,
+			logininfo : logininfo
 		}
 		callAction(consumable.viewid,"queryEquip",json,"changeSelectcallBack");
 	},

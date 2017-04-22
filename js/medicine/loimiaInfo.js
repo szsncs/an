@@ -453,10 +453,13 @@ var loimian = {
 		$("#illness_type0").html(html);
 	},
 	changeSelect : function(id,tag){//下级下拉选初始化
+		var data = $cache.read("logininfo");
+		var logininfo = JSON.parse(data);
 		var illness_item=$(id+tag).find("option:selected").attr("id");
 		var json = {
 			illness_item : illness_item,
-			tag : tag
+			tag : tag,
+			logininfo : logininfo
 		}
 		callAction(loimian.viewid,"getChildren",json,"changeSelectcallBack");
 	},

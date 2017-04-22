@@ -378,6 +378,12 @@
             w.summer["cordova"] = w.cordova;
 
             document.addEventListener('deviceready', function(){
+				if(typeof summerinit == "function")
+					summerinit();//框架调用
+				else if(typeof summerInit == "function")
+					summerInit();//框架调用
+				summer.trigger("init");
+				
                 //1、先通过cdv来获取页面参数
                 summer.winParam(function(ret){
 					//希望返回
@@ -412,9 +418,15 @@
                     summer.showWin({});
                     if(typeof summerready == "function")
                         summerready();
-                    if(typeof summerReady == "function")
+                    else if(typeof summerReady == "function")
                         summerReady();  
-
+					summer.trigger("ready");
+					
+					if(typeof aftershowwin == "function")
+                        aftershowwin();
+                    else if(typeof afterShowWin == "function")
+                        afterShowWin();
+					summer.trigger("aftershowwin");
                 });         
             }, false);
 
@@ -460,8 +472,54 @@
 		}
 		return true;
 	};
-   
 	w.$summer.require = w.summer.require;
+	
+	var EventMgr = function() {
+        this._events = {};
+    }
+    EventMgr.prototype.on = function(evtName, handler) {
+        if (this._events[evtName] == null) {
+            this._events[evtName] = [];
+        }
+        this._events[evtName].push(handler);
+    }
+    EventMgr.prototype.off = function(evtName, handler) {
+        var handlers = this._events[evtName];
+        if (typeof handler == "undefined") {
+            delete handlers;
+        } else {
+            var index = -1;
+            for (var i = 0, len = handlers.length; i < len; i++) {
+                if (handler == handlers[i]) {
+                    index = i;
+                    break;
+                }
+            }
+            if (index > 0)
+                handlers.remove(index);
+        }
+    }
+    EventMgr.prototype.trigger = function(evtName, sender, args) {
+        try{
+            var handlers = this._events[evtName];
+			if(!handlers) return;
+            var handler;
+            args = args || {};
+            for (var i=0,len=handlers.length; i < len; i++) {
+                handler = handlers[i];
+                handler(sender, args);
+            }
+        }catch(e){
+            alert(e);
+        }
+    }
+	var _ems = new EventMgr();
+	w.summer.on = function(eName, fn){
+		_ems.on(eName, fn);
+	}
+	w.summer.trigger = function(eName){
+		_ems.trigger(eName);
+	}
 })(window);
 
 
@@ -1496,6 +1554,7 @@
 	}
 	//----------------------------------------------------------------------
 	s.UMService = {
+		//统一API，dsl和summer均支持的服务
 		call:function(serviceType, jsonArgs, isSync){
 			try{
 				jsonArgs = jsonArgs || {};
@@ -1515,6 +1574,7 @@
 					}
 				}else if(typeof jsonArgs == "object"){//标准参数走这里
 					if(jsonArgs["callback"] && $summer.isFunction(jsonArgs["callback"]) && !jsonArgs["__keepCallback"]){
+						//callback为function
 						try{
 							//1、 callback:function(){}
 							var newCallBackScript = "fun" + $summer.UUID(8, 16) + "()";//anonymous method
@@ -1549,6 +1609,7 @@
 							alert("Excp1: callback为function时，准备callback阶段异常:" + e);
 						}
 					}else if(jsonArgs["callback"] && typeof(jsonArgs["callback"]) == "string" && !jsonArgs["__keepCallback"]){
+						//callback为字符串写法
 						try{
 							//2、 callback:"mycallback()"
 							try{
@@ -1592,6 +1653,52 @@
 						}catch(e){
 							alert("Excp2: callback为string时，准备callback阶段异常:" + e);
 						}
+					}else if(jsonArgs["callback"] && typeof(jsonArgs["callback"]) == "function" && jsonArgs["__keepCallback"]){
+						//callback为字符串写法
+						try{
+							//2、 callback:function
+							try{
+								var cbName = jsonArgs["callback"].substring(0, jsonArgs["callback"].indexOf("("));
+								var callbackFn = eval(cbName);
+								if(typeof callbackFn != "function"){
+									alert(cbName + " is not a global function, callback function must be a global function!");
+									return;
+								}
+							}catch(e){
+								alert("Excp2.1: 检查callback是否是全局可执行方法异常,callback参数为" + jsonArgs["callback"]);
+							}
+							
+							try{
+								var newCallBackScript = "fun" + $summer.UUID(8, 16) + "()";//anonymous method
+								while(window[newCallBackScript]){
+									newCallBackScript =  "fun" + $summer.UUID(8, 16) + "()";//anonymous method
+								}
+								//
+								window[newCallBackScript.substring(0,newCallBackScript.indexOf("("))] = function (sender, args){
+									try{
+										//alert(typeof sender);
+										//alert(typeof args);
+										//$alert(sender);
+										//$alert(args);
+										if(args == undefined)
+											args = sender;
+										callbackFn(sender, args);
+									}catch(e){
+										alert(e);
+									}finally{
+										delete window[newCallBackScript.substring(0,newCallBackScript.indexOf("("))];
+										//alert("del ok");
+										//alert(typeof window[newCallBackScript.substring(0,newCallBackScript.indexOf("("))]);
+									}
+								}
+								jsonArgs["callback"] = newCallBackScript;
+							}catch(e){
+								alert("Excp2.2: 接管callback阶段异常:" + e);
+							}
+						}catch(e){
+							alert("Excp2: callback为string时，准备callback阶段异常:" + e);
+						}
+						
 					}
 					
 					
@@ -1964,6 +2071,15 @@
 		},
 		popupKeyboard : function(){
 			return s.callService("UMDevice.popupKeyboard",{},true);
+		},
+		listenGravitySensor : function(json){
+			json = json || {};
+			json["__keepCallback"] = true;
+			return s.callService("UMDevice.listenGravitySensor",json,false);
+		},
+		closeGravitySensor : function(json){
+			json = json || {}
+			return s.callService("UMDevice.closeGravitySensor",json,false);
 		}
 	};
 	s.UMFile = {
@@ -2007,6 +2123,20 @@
 		},
 		openFileSelector : function(args){
 			return s.callService("UMFile.openFileSelector", args);
+		},
+		fileToBase64:function(args){
+			var json = args;
+			if(typeof args == "string"){
+				json = {"path" : args};
+			}
+			return s.callService("UMFile.fileToBase64",json, true);
+		},
+		base64ToFile:function (args){
+			var json = args;
+			if(typeof args == "string"){
+				json = {"path" : args};
+			}
+			return s.callService("UMFile.base64ToFile",json, true);
 		}
 
 	};
@@ -2268,6 +2398,8 @@
 	s.getContacts = s.UMDevice.getContacts;
 	s.saveContact = s.UMDevice.saveContact;
 	s.popupKeyboard = s.UMDevice.popupKeyboard;
+	s.listenGravitySensor = s.UMDevice.listenGravitySensor;
+	s.closeGravitySensor = s.UMDevice.closeGravitySensor;
 	//
 	s.removeFile = s.UMFile.remove;
  	s.exists = s.UMFile.exists;
@@ -2275,6 +2407,8 @@
  	s.openFile = s.UMFile.open;
  	s.getFileInfo = s.UMFile.getFileInfo;
  	s.openFileSelector = s.UMFile.openFileSelector;
+ 	s.fileToBase64 = s.UMFile.fileToBase64;
+ 	s.base64ToFile = s.UMFile.base64ToFile;
 	/*tel*/
 	s.callPhone= s.UMTel.call;
 	s.sendMsg= s.UMTel.sendMsg;
@@ -2369,12 +2503,13 @@
 	w.$summer.__debug = false;
 }(window,summer);
 
-/*
+/*2017.3.8
  * Summer JavaScript Library
  * Copyright (c) 2016 yonyou.com
- * Author: qhb@yonyou.com go
+ * Author: Qhb@yonyou.com go
  * Version: 3.0.0.20170214.2047
  */
+
 (function(global, factory){
     if ( typeof module === "object" && typeof module.exports === "object" ) {
      
@@ -2464,5 +2599,21 @@
         json["callback"]=successFn;
         json["error"]=errFn;
         return  s.callService('UMEMMService.feedback', json, false);
+    };
+     e.installWebApp = function(json,successFn,errFn){
+        json["callback"]=successFn;
+        json["error"]=errFn;
+        return  s.callService('UMEMMService.installWebApp', json, false);
+    };
+     e.openWebApp = function(json,successFn,errFn){
+        json["callback"]=successFn;
+        json["error"]=errFn;
+        return  s.callService('UMEMMService.openWebApp', json, false);
+    };
+     e.removeWebApp = function(json,successFn,errFn){
+        json["callback"]=successFn;
+        json["error"]=errFn;
+        return  s.callService('UMEMMService.removeWebApp', json, false);
     }
+    
 }(window,emm,summer);

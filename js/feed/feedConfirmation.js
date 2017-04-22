@@ -62,10 +62,6 @@ var feedConfirmation = {
 		}
 		
 	},
-	loadPage:function(data){
-		var inbill = data.billinfo.inbill;
-		feedConfirmation.initBillList(inbill);
-	},
 	initBillList:function(data){
 		$("#inbillListul").html("");
 		var html = "";
