@@ -530,7 +530,7 @@ function getSilverskinArrived_js(url){
 
 function getNotApprvoeSuppliesInfo_js(url){
 	var notApprvoeSuppliesInfo_js = [
-					https+utl+js
+					https+url+js
 					];
 	return jquery_min.concat(yonyou_js.concat(notApprvoeSuppliesInfo_js));				
 }
@@ -555,7 +555,7 @@ function getTransferSummary_js(url){
 
 
 function getFeedTransfer_js(url){
-	var feedTransfer_js = [https+utl+js];
+	var feedTransfer_js = [https+url+js];
 	return jquery_min.concat(yonyou_js.concat(feedTransfer_js));				
 }
 
@@ -585,7 +585,7 @@ function getLoginSetting_js(url){
 }
 
 function getFeedApply_js(url){
-	var feedApply_js = [https+utl+js];
+	var feedApply_js = [https+url+js];
 	return jquery_min.concat(yonyou_js.concat(feedApply_js));				
 }
 
