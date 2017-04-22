@@ -291,7 +291,7 @@ function getFeedArrived_js(url){
 	return jquery_min_2_1_4.concat(yonyou_js.concat(feedArrived_js));				
 }
 
-function getMain_js(url){js	5
+function getMain_js(url){
 	var main_js = [
 					https+url+js,
 					https+knockout_2_2_0+js,
@@ -456,7 +456,7 @@ function getMedicineReceive_js(url){//引入已到饲料查询js	7
 	return jquery_min_2_1_4.concat(yonyou_js.concat(medicineReceive_js));				
 }
 
-function getMedicineList_js(url){//引入已到饲料查询js	5
+function getMedicineList_js(url){
 	var medicineList_js = [
 					https+url+js,
 					https+knockout_2_2_0+js,
@@ -466,7 +466,7 @@ function getMedicineList_js(url){//引入已到饲料查询js	5
 }
 
 
-function getMedicineConfirmation_js(url){//引入已到饲料查询js	7
+function getMedicineConfirmation_js(url){
 	var medicineConfirmation_js = [
 					https+url+js,
 					https+knockout_2_2_0+js,
@@ -598,7 +598,7 @@ function getFeedArrived_js(url){
 	return jquery_min_2_1_4.concat(yonyou_js.concat(feedArrived_js));				
 }
 
-function getMain_js(url){//引入已到饲料查询js	5
+function getMain_js(url){
 	var main_js = [
 					https+url+js,
 					https+knockout_2_2_0+js,
@@ -608,7 +608,7 @@ function getMain_js(url){//引入已到饲料查询js	5
 	return jquery_min_2_1_4.concat(yonyou_js.concat(main_js));				
 }
 
-function getIndex_js(url){//引入登录界面js	2
+function getIndex_js(url){
 	var index_js = [https+url+js];
 	return jquery_min_2_1_4.concat(index_js.concat(yonyou_js));				
 }
