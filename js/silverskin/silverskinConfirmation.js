@@ -21,15 +21,9 @@ var silverskinConfirmation = {
 			//保存按钮
 			silverskinConfirmation.confirmClick();	
 		});
-		$(".ti-home").unbind().on("click",function(){
-			//保存按钮
-			summer.openWin({
-                "id" : 'home',
-                "url" : 'html/main.html'
-            });
-		});
-		
-		//失去焦点是触发
+	},
+	daynamicBind : function(){
+			//失去焦点是触发
 		$(".focusevet").bind("blur", function() {
 			var val=$(this).val();
 			if(val==""){
@@ -43,6 +37,8 @@ var silverskinConfirmation = {
 				$(this).val("")
 			}
 		});
+		
+		//敲击按键时触发
 		$(".confirm_num").bind("keypress", function(event) {
 			var event = event || window.event;
 			var getValue = $(this).val();
@@ -62,6 +58,15 @@ var silverskinConfirmation = {
 			if (event.which && (event.which < 48 || event.which > 57) && event.which != 8 && event.which != 46) {
 				event.preventDefault();
 				return;
+			}
+		})
+		//失去焦点是触发
+		$(".confirm_num").bind("blur", function(event) {
+			var value = $(this).val(),
+			    reg = /\.$/;
+			if (reg.test(value)) {
+				value = value.replace(reg, "");
+				$(this).val(value);
 			}
 		})
 	},
@@ -105,6 +110,7 @@ var silverskinConfirmation = {
 		var inbill = data;
 		if(inbill.length>0){
 			silverskinConfirmation.initBillList(inbill);
+			silverskinConfirmation.daynamicBind();
 		}else{
 			$("#inbillListul").html("");
 			$("#inbillListul").html("<div>当前无物流将要到货</div>");
@@ -115,29 +121,29 @@ var silverskinConfirmation = {
 		var html = "";
 		for(var i=0;i<list.length;i++){
 			 html +='<li class="applyli '+list[i].isPlan+'">'
-				  +'<div class="um-list-item">'
-				  +'<div class="w50">'
-				  +'<label class="um-check-inline">'
-                  +'<input name="um-checkbox-inline" type="checkbox" pk_inbill="'+list[i].pk_inbill+'" class="sk-checked"  value="">'
-                  +'<span class="um-icon-checkbox um-css3-vc"></span>'
-                  +'</label>'
-				  +'</div>'
-				  +'<div class="um-list-item-inner">'
+				  +'	<div class="um-list-item">'
+				  +'		<div class="w50">'
+				  +'			<label class="um-check-inline">'
+                  +'				<input name="um-checkbox-inline" type="checkbox" pk_inbill="'+list[i].pk_inbill+'" class="sk-checked"  value="">'
+                  +'					<span class="um-icon-checkbox um-css3-vc"></span>'
+                  +'			</label>'
+				  +'		</div>'
+				  +'	<div class="um-list-item-inner">'
 				  +'<div class="um-list-item-left">'
-				  +'<div class="che">'
+				  +'<div class="che f14">'
 				  +'车牌号：<span>'+list[i].carno+'</span>'
 				  +'</div>'
-				  +'<div class="feed">'
+				  +'<div class="feed f14">'
 				  +'过磅货量：<span>'+list[i].num+'</span>吨'
 				  +'</div>'
 				  +'</div>'
 				  +'<div class="um-list-item-right">'
-				  +'<div class="feed feed_date">'
+				  +'<div class="feed feed_date f14">'
 				  +'到货时间：<span>'+list[i].dbizdate+'</span>'
 				  +'</div>'
-				  +'<div class="feed">'
+				  +'<div class="feed f14">'
 				  +'验收货量：'
-				  +'<input type="number" class="confirm_num focusevet" value="'+list[i].num+'" placeholder="请输入确认收货量">'
+				  +'<input type="number"  class="confirm_num focusevet" value="'+list[i].num+'" >'
 				  +'吨'
 				  +'</div>'
 				  +'</div>'
@@ -172,9 +178,7 @@ function callBack(args){
 	summer.hideProgress();
 	if(args.status == "0"){
 		var inbill= args.data.billinfo.inbill;
-		if(inbill && inbill.length>0){
-			silverskinConfirmation.loadPage(inbill);
-		}
+		silverskinConfirmation.loadPage(inbill);
 	}else if(args.status == "1"){
 		alert("初始化失败:"+args.message);
 		//lastPageRefresh("refresh","html","main");
