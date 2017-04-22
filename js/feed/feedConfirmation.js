@@ -126,7 +126,7 @@ var feedConfirmation = {
 function callBack(args){
 	summer.hideProgress();
 	if(args.status == "0"){
-		feedConfirmation.loadPage(args.data);
+		feedConfirmation.initBillList(args.data);
 	}else if(args.status == "1"){
 		$("#inbillListul").html("");
 		alert("初始化失败："+args.message);
