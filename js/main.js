@@ -7,15 +7,10 @@ summerready = function () {
         function onDeviceReady() { 
                 // 按钮事件 
                 document.addEventListener("backbutton", eventBackButton, false); // 返回键 
-               
         } 
-          
-			
         // 返回键 
-        
         function eventBackButton() { 
-             UM.alert('5秒内再次点击返回键将退出应用!'); 
-             alert('5秒内再次点击返回键将退出应用!'); 
+            UM.alert('5秒内再次点击返回键将退出应用!'); 
             document.removeEventListener("backbutton", eventBackButton, false); // 注销返回键 
             document.addEventListener("backbutton", exitApp, false);//绑定退出事件 
             // 3秒后重新注册 
@@ -32,22 +27,129 @@ summerready = function () {
 		main.bindEvent();
 		//加载第一个页面
 		main.init();
+		app.initialize();
 	//$summer.byId("content").innerHTML += "<h1 style='text-align: center'>Hello friends, welcome to touch the summer frame!</h1><h2 style='text-align: center'>The frame update at " +(new Date()).toLocaleString()+"</h2>";
 };
+
+var initiateUI = function() {
+    try {
+        //初始化
+        window.plugins.jPushPlugin.init();
+        getRegistrationID();
+
+        if (device.platform != "Android") {
+            window.plugins.jPushPlugin.setDebugModeFromIos();
+            window.plugins.jPushPlugin.setApplicationIconBadgeNumber(0);
+        } else {
+            window.plugins.jPushPlugin.setDebugMode(true);
+            window.plugins.jPushPlugin.setStatisticsOpen(true);
+        }
+    } catch (exception) {
+        console.log(exception);
+    }
+};
+//获取注册ID
+var getRegistrationID = function() {
+    window.plugins.jPushPlugin.getRegistrationID(onGetRegistrationID);
+};
+var onGetRegistrationID = function(data) {
+    try {
+        console.log(data);
+        if (data.length == 0) {
+            var t1 = window.setTimeout(getRegistrationID, 1000);
+        }
+    } catch (exception) {
+        alert(exception);
+    }
+};
+// 打开通知
+var onOpenNotification = function(event) {
+    try {
+        var alertContent;
+        if (device.platform == "Android") {
+            alertContent = event.alert;
+        } else {
+            alertContent = event.aps.alert;
+        }
+        alert(alertContent);
+        if (event.extras.count == 3){
+            alert("即将打开百度");
+            location.href = "http://www.baidu.com"
+        }
+    } catch (exception) {
+        alert("JPushPlugin:onOpenNotification" + exception);
+    }
+};
+//获取通知内容
+var onReceiveNotification = function(event) {
+    try {
+        var alertContent;
+        if (device.platform == "Android") {
+            alertContent = event.alert;
+        } else {
+            alertContent = event.aps.alert;
+        }
+        alert(alertContent);
+    } catch (exception) {
+        alert(exception)
+    }
+};
+// 获取自定义消息推送内容
+/* var onReceiveMessage = function(event) {
+    try {
+        var message;
+        if (device.platform == "Android") {
+            message = event.message;
+        } else {
+            message = event.content;
+        }
+        alert(message);
+    } catch (exception) {
+        alert("JPushPlugin:onReceiveMessage" + exception);
+    }
+}; */
 function callBack(arg){
 	//UM.alert(JSON.stringify(arg));
 	if(arg.status == "0"){
 		main.initMainPage(arg.data);
 		main.initMyPage(arg.data);
 	}else{
-		alert(arg.message);
+		UM.alert(arg.message);
 	}
 	
 }
 function erresg(arg){
-	alert("失败");
-	alert(JSON.stringify(arg));
+	UM.alert("失败");
+	UM.alert(JSON.stringify(arg));
 }
+var app = {
+    // Application Constructor
+    initialize: function() {
+        this.bindEvents();
+    },
+    bindEvents: function() {
+        document.addEventListener('deviceready', this.onJPushDeviceReady, false);
+
+    },
+    onJPushDeviceReady: function() {
+        app.receivedEvent('deviceready');
+    },
+    receivedEvent: function(id) {
+        // 监听加载完成事件
+        document.addEventListener("deviceready", onJPushDeviceReady, false);
+        // 打开通知
+        document.addEventListener("jpush.openNotification", onOpenNotification, false);
+        // 获取通知内容
+        document.addEventListener("jpush.receiveNotification", onReceiveNotification, false);
+        // 获取自定义消息推送内容
+        //document.addEventListener("jpush.receiveMessage", onReceiveMessage, false);
+    }
+};
+// 开始
+var onJPushDeviceReady = function() {
+    initiateUI();
+};
+
 /**
  * author:zhangjlt
  * date:2016年8月22日22:30:42
@@ -71,9 +173,13 @@ var main = {
 				"url" : 'index.html',
 			});
 		}); 
+	
+
 	},
 	init:function(){
 	   var usercode = $cache.read("userid");
+	   // 设置jpush标签和别名
+	   window.plugins.jPushPlugin.setAlias(usercode);
 	   var username = $cache.read("username");
 	   var pk_corp = $cache.read("pk_corp");
 		var json={
@@ -153,7 +259,7 @@ var main = {
 				  //+'<img src="../img/btn/'+funcode+'.png">'
 				  +'</div>'
 				  +'</div>'
-                  +' <a href="#" class="w85 h40 um-box-center click" dataurl="'+list[i].url +'">'             
+                  +' <a href="#" class="w85 h40 um-box-center click" funcode="'+list[i].id+'"  dataurl="'+list[i].url +'">'             
                   +' <div>'                                          
                   +' <div class="um-black f14"> '+str+' </div>'                      
                   +' </div>'                          
@@ -171,14 +277,20 @@ var main = {
 		$("#apply").append(html);
 		$(".um-click").click(function(){
 			var str =$(this).find('a').attr("dataurl");
+			var funcode=$(this).find('a').attr("funcode");
 			var url = 'html'+str;
 			
 			summer.openWin({
 	            "id" : str,
-	            "url" : url
+	            "url" : url,
+	            pageParam: {
+			        "type": funcode
+			    }
 	        });
 		});
+		
 	},
+
 	loadChickenFarm:function(arg){
 		var logininfostr = $cache.read("logininfo");
 		var logininfo = JSON.parse(logininfostr);
@@ -231,6 +343,7 @@ var main = {
 		}
 		html +='</div>';
 		$("#apply").append(html);
+
 	},
 	loadBanner:function(){
 		var html ='<div class="um-row"><div id="iSlider-wrapper" class="iSlider-wrapper"></div></div>';
@@ -254,15 +367,22 @@ var main = {
 			isLooping: true,
 			animateType: 'default',
 			isAutoplay: true,
-			animateTime: 800
+			animateTime: 1000
 		});
 		islider.addDot();
 	},
 	// 我  界面加载
-	initMyPage:function(){
-
+	initMyPage:function(arg){
+		var logininfo = arg.logininfo;
+		//2.2 成功回调中加载 用户信息
+		var username = logininfo.userinfo.username;
+		var userChang = logininfo.henneryinfo.hennery_name;
+		$(".login_name").html(username);
+		$(".hennery_name").html(userChang);
 	},
 	// 消息界面加载
 	initMessagePage:function(){
 
 	}
+	
+};
