@@ -1,0 +1,19 @@
+.sk-checked {
+	margin-top: 35px;
+	width: 15px;
+	height: 15px;
+}
+#header {
+	background: #00BB9C;
+}
+.btn_color {
+	border: #00BB9C solid 1px;
+	color: #00BB9C;
+}
+.siloSelect {
+	border-radius: 3px;
+	background: #FFFFFF;
+}
+#feedConfirm {
+	display: none;
+}

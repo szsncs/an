@@ -1,0 +1,157 @@
+.sk-checked {
+	margin-top: 35px;
+	width: 15px;
+	height: 15px;
+}
+#header {
+	background: #00BB9C;
+}
+.btn_color {
+	color: #00BB9C;
+	border: #00BB9C solid 1px;
+}
+.um-list a.um-list-item:before {
+	border-left: none;
+	border-bottom: none;
+}
+.um-list-item {
+	margin: 0 auto;
+}
+.um-tabbar {
+	margin: 0 auto;
+	margin-top: 6px;
+}
+.days {
+	width: 100%;
+	position: relative;
+	height: 26px;
+	margin-right: 15px;
+}
+.days p {
+	position: absolute;
+	line-height: 26px;
+}
+.um-list {
+	display: none;
+}
+.chick-house,.medicine-name,.count{
+	float: left;
+	width: 222px;
+	display: inline;
+}
+.chick-num,.medicine-num,.day {
+	float: left;
+	display: inline;
+}
+.medicineSpecifications {
+	float: right;
+	text-align: right;
+	width: 70%;
+	display: inline;
+}
+.um-box-vc {
+	height: 50px;
+}
+.um-icon-checkbox {
+	width: 22px;
+	height: 22px;
+}
+.chick-houses {
+	height: 51px;
+	border-bottom: #000000 solid 1px;
+	border-top: #000000 solid 1px;
+}
+.chick-house{
+	width:180px;
+}
+.um-tabbar>li>a{
+	height:35px;
+	font-size:20px;
+}
+.sk-checked {
+	margin-top: 35px;
+	width: 15px;
+	height: 15px;
+}
+#header {
+	background: #00BB9C;
+}
+.btn_color {
+	color:#00BB9C;
+	border: #00BB9C solid 1px;
+}
+.um-list a.um-list-item:before{
+	border-left:none;
+	border-bottom:none;
+}
+.carNo{
+	width: 100%;
+	position: relative;
+	height: 26px;
+	margin-right: 15px;
+}
+.carNo p{
+	position: absolute;
+	line-height: 26px;
+}
+.um-list{
+	display:none;
+}
+.medicineName{
+	float:left;
+	left:20px;
+	width:150px;
+	display: inline;
+	padding-left:10px;
+	padding-bottom:15px;
+}
+.medicineArrive{
+	width:300px;
+}
+.medicineNum{
+	float:left;
+	display: inline;
+	padding-right:25px;
+	padding-left:20px;
+	width: 170px;
+	padding-top: 10px;
+}
+.medicineSpecifications{
+	float:right;
+	text-align:right;
+	width:70%;
+	display: inline;
+}
+.um-box-vc{
+	height: 50px;
+}
+.um-icon-checkbox{
+	width: 22px;
+	height: 22px;
+}
+.um-sortlist-row{
+	height:75px;
+	width:300px;
+	margin-top:5px;
+	margin-bottom:5px;
+	border:1px solid #00BB9C;
+	border-radius:10px;
+	margin-left:35px;
+}
+.medicineCountTwo{
+	position: absolute;
+}
+.medicineCount{
+	position: absolute;
+	left:10px;
+}
+.confirm_num{
+	width:30%;
+}
+.shouldNum{
+	padding-right:9px;
+	width:25%;
+}
+.um-sortlist-title{
+	font-size:15px;
+}

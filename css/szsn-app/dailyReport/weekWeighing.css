@@ -1,0 +1,37 @@
+.l-t-info {
+	width: 30%;
+	text-align: center;
+}
+body {
+	background: #ffffff
+}
+.info_body {
+	margin-left: 15px;
+}
+.b_left {
+	margin-right: 80px;
+}
+.btn-inline {
+	width: 25%;
+	top: 7px;
+}
+.um_list {
+	color: #FFFFFF;
+	margin-top: 5px;
+	display: none;
+}
+#busi_date {
+	width: 50%;
+	height: 24px;
+	margin-left: -44px;
+}
+#header {
+	background: #00BB9C;
+}
+.btn_color {
+	border: #00BB9C solid 1px;
+	color: #00BB9C;
+}
+.daily_num {
+	border-radius: 3px
+}

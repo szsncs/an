@@ -1,0 +1,24 @@
+.list_batch {
+	margin-left: 15px;
+}
+.approve_status {
+	margin-left: 30px;
+}
+.daily_info {
+	margin-left: -20px;
+}
+#header {
+	background: #00BB9C;
+}
+.btn_color {
+	border: #00BB9C solid 1px;
+	color: #00BB9C;
+}
+.list_type {
+	float: left;
+	margin-left: 0px;
+}
+.list_num {
+	float: left;
+	margin-left: 80px;
+}

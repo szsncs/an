@@ -1,0 +1,67 @@
+#header {
+	background: #00BB9C;
+}
+.um-tabbar{
+	width:45%;
+	margin:0 auto;
+	margin-top:6px;
+}
+span{
+	font-weight: bold;
+	padding-right:10px;
+}
+.um-list .um-list-item-right {
+	text-align:left;
+	margin-left: -22px;
+}
+.um-list-item{
+	margin-top:5px;
+	margin-bottom:5px;
+	border:1px solid #00BB9C;
+	border-radius:10px;
+	padding: 0;
+}
+.um-list-item-inner>.um-list-item-left{
+	width: 50%;
+	width: 169px;
+    padding-left: 10px;
+}
+.um-check-group-left{
+	margin:0px;
+}
+.sk-checked {
+	margin-top: 35px;
+	width: 15px;
+	height: 15px;
+}
+.btn_color {
+	color: #00BB9C;
+	border: #00BB9C solid 1px;
+}
+.confirm_num{
+	width: 35%;
+	height:25px;
+	font-size: bold;
+}
+.w50{
+	text-align: center;
+}
+.feed_date{
+	width: 177px;
+}
+.sum{
+	margin-left: 0px;
+	margin-top: 20px;
+}
+.um-sortlist-title{
+	height: 50px;
+}
+.um-list-item-inner>.um-list-item-left{
+	padding-left: 0px;
+}
+
+.arrivetype{
+	margin-left: 0px;
+	position:absolute;
+	top:0px;
+}

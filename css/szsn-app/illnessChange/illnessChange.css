@@ -1,0 +1,10 @@
+#select1_dummy {
+	border: none;
+	font-size: 17px;
+}
+#select1_dummy:disabled {
+	background: #fff;
+}
+.um-list .um-list-item-left {
+	width: 25%;
+}

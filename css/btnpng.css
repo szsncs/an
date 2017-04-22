@@ -1,0 +1,4 @@
+.icon_box{position: relative;border-radius:10px}
+.icon{background:url() no-repeat;background-size: 80% 80%;background-position:bottom;position: absolute;width: 80%;height: 80%;left:5px;}
+.icon img{width:50%;height:auto;}
+.um-click{}

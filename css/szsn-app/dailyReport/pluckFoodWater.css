@@ -1,0 +1,83 @@
+.l-t-info {
+	width: 30%;
+	text-align: center;
+}
+body {
+	background: #ffffff
+}
+.pfw_body {
+	margin-left: 15px;
+}
+.l-t-top {
+	line-height: 60px;
+}
+.pluck-food {
+	height: 30px;
+	border-left: 1px solid #E3E3E5;
+	border-bottom: 1px solid #E3E3E5;
+	line-height: 30px;
+	margin-right: -20px;
+}
+.pluck-water {
+	height: 30px;
+	border-left: 1px solid #E3E3E5;
+	line-height: 30px;
+	margin-right: -20px;
+}
+.input-width {
+	width: 52%;
+	height: 25px;
+}
+#feed_type {
+	border: none;
+	font-size: inherit;
+	font-family: inherit;
+	margin-left: -7px;
+	background: #FFFFFF;
+}
+.feed_type_width {
+	width: 100%;
+}
+.b_left {
+	margin-right: 80px;
+}
+.btn-inline {
+	width: 25%;
+	top: 7px;
+}
+.zsyz-list-item {
+	-webkit-align-items: center;
+	align-items: center;
+	padding: 0;
+	padding-left: 15px;
+	color: #000;
+	transition: all ease .3s;
+	margin-top: 2px;
+}
+.pluck-feed {
+	border: none;
+	margin-left: -272px;
+}
+.feed_siliao {
+	margin-right: 12px;
+}
+.um_list {
+	color: #FFFFFF;
+	margin-top: 5px;
+	display: none;
+}
+.busi_date {
+	width: 50%;
+	height: 24px;
+	margin-left: -44px;
+}
+#header {
+	background: #00BB9C;
+}
+.btn_color {
+	border: #00BB9C solid 1px;
+	color: #00BB9C;
+}
+.daily_num {
+	border-radius: 3px
+}

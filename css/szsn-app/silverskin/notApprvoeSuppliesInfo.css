@@ -1,0 +1,20 @@
+.um-footer {
+	background: #ffffff;
+}
+.b_left {
+	margin-right: 80px;
+}
+.btn-inline {
+	width: 25%;
+	top: 7px;
+}
+#header {
+	background: #00BB9C;
+}
+.btn_color {
+	color: #00BB9C;
+	border: #00BB9C solid 1px;
+}
+.applyNum {
+	border-radius: 3px
+}

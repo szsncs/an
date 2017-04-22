@@ -1,0 +1,50 @@
+.b_left {
+	margin-right: 80px;
+}
+.btn-inline {
+	width: 25%;
+	top: 7px;
+}
+.btn_color {
+	border: #00BB9C solid 1px;
+	color: #00BB9C;
+}
+#header {
+	background: #00BB9C;
+}
+.um-list a.um-list-item:before {
+	border-left: 2px solid #FFFFFF;
+	border-bottom: 2px solid #FFFFFF;
+}
+.pl15 {
+	padding-left: 40px;
+}
+.select_type {
+	direction: rtl;
+	border: none;
+	height: 42.8px;
+	font-size: 17px;
+	width: 96%;
+	margin-right: 200px;
+	background: #FFFFFF;
+}
+#body_num {
+	text-align: right;
+}
+.um-content .clearfix {
+	margin-top: 0;
+}
+.select_list {
+	display: none;
+}
+#body_hennerhouse_name {
+	text-align: right;
+}
+.select_house {
+	direction: rtl;
+	border: none;
+	height: 42.8px;
+	font-size: 17px;
+	width: 96%;
+	background: #FFFFFF;
+}

@@ -1,0 +1,28 @@
+.l-t-info {
+	width: 40%;
+	text-align: center;
+	margin-left: 15px;
+}
+body {
+	background: #ffffff
+}
+.info_body {
+	margin-left: 15px;
+}
+.b_left {
+	margin-right: 80px;
+}
+.btn-inline {
+	width: 25%;
+	top: 7px;
+}
+#header {
+	background: #00BB9C;
+}
+.btn_color {
+	border: #00BB9C solid 1px;
+	color: #00BB9C;
+}
+.daily_num {
+	border-radius: 3px
+}
