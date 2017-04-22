@@ -1121,4 +1121,3 @@ function getIndex_css(){
 	http_cs+yonyou_css+css];
 	return index_css;				
 }
-function a(){}
