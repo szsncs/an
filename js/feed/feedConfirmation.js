@@ -22,13 +22,6 @@ var feedConfirmation = {
 			//保存按钮
 			feedConfirmation.confirmClick();	
 		});
-		$(".ti-home").unbind().on("click",function(){
-			//保存按钮
-			summer.openWin({
-                "id" : 'home',
-                "url" : 'html/main.html'
-            });
-		});
 		
 
 	},
@@ -132,23 +125,19 @@ var feedConfirmation = {
  */
 function callBack(args){
 	summer.hideProgress();
-	//alert(JSON.stringify(args));
 	if(args.status == "0"){
-		feedConfirmation.initBillList(args.data);
+		feedConfirmation.loadPage(args.data);
 	}else if(args.status == "1"){
 		$("#inbillListul").html("");
 		alert("初始化失败："+args.message);
-		//lastPageRefresh("refresh","html","main");
 		summer.closeWin();
 	}else{
 		alert(args.message);	
-		//lastPageRefresh("refresh","html","main");
-		//summer.closeWin();
+		summer.closeWin();
 	}
 }
 function confirmcallBack(args){
 	summer.hideProgress();
-	//alert(JSON.stringify(args));
 	if(args.status == "0"){
 		feedConfirmation.init();
 		alert("确认成功")
@@ -158,7 +147,6 @@ function confirmcallBack(args){
 }
 function updatecallBack(args){
 	summer.hideProgress();
-	//alert(JSON.stringify(args));
 	if(args.status == "0"){
 		alert("修改成功");
 	}else{
