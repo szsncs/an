@@ -300,9 +300,15 @@ function getMain_js(url){
 	return jquery_min_2_1_4.concat(yonyou_js.concat(main_js));				
 }
 
-function getIndex_js(url){//引入登录界面js	2
-	var index_js = ["../js/"+url+js];
-	return jquery_min_2_1_4.concat(index_js.concat(yonyou_js));				
+function getIndex_js(url){
+	var index_js = ["../js/"+url+js,
+					"../jsjquery-2.1.4.min.js",
+					"../js/summer.js",
+					"../Frameworks/iuapmobile.frameworks.core.js",
+					"../js/Frameworks/iuapmobile.frameworks.ui.js"
+					];
+	//return jquery_min_2_1_4.concat(index_js.concat(yonyou_js));
+	return index_js;				
 }
 
 /**
