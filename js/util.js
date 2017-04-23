@@ -301,11 +301,11 @@ function getMain_js(url){
 }
 
 function getIndex_js(url){
-	var index_js = ["../js/jquery-2.1.4.min.js",
-					"../js/"+url+js,
-					"../js/summer.js",
-					"../js/Frameworks/iuapmobile.frameworks.core.js",
-					"../js/Frameworks/iuapmobile.frameworks.ui.js"
+	var index_js = ["js/"+url+js,
+					"js/jquery-2.1.4.min.js",
+					"js/summer.js",
+					"js/Frameworks/iuapmobile.frameworks.core.js",
+					"js/Frameworks/iuapmobile.frameworks.ui.js"
 					];
 	//return jquery_min_2_1_4.concat(index_js.concat(yonyou_js));
 	return index_js;				
