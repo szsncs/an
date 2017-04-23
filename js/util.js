@@ -1,4 +1,5 @@
 var https="file:///android_asset/www/js/";
+var js=".js";
 var jquery_2_1_4="jquery-2.1.4.min";
 var jquery="jquery.min";
 var summer="summer";
@@ -495,319 +496,319 @@ var loimiaInfo = "loimiaInfo";
 var summer = "summer";
 var islider = "islider";
 function getEquipmentMaintenanceInfo_css(){
-	var equipmentMaintenanceInfo_css = [http_cs+font_icons+css,
-	http_cs+yonyou_css+css,
-	http_cs+iscroll+css,];
+	var equipmentMaintenanceInfo_css = [http_css+font_icons+css,
+	http_css+yonyou_css+css,
+	http_css+iscroll+css,];
 	return equipmentMaintenanceInfo_css;				
 }
 
 function getEquipmentMaintenance_css(){
-	var equipmentMaintenance_css = [http_cs+font_icons+css,
-	http_cs+yonyou_css+css,
-	http_cs+iscroll+css,];
+	var equipmentMaintenance_css = [http_css+font_icons+css,
+	http_css+yonyou_css+css,
+	http_css+iscroll+css,];
 	return equipmentMaintenance_css;		
 }
 
 function getEquipmentFirstList_css(){
-	var equipmentFirstList_css = [http_cs+yonyou_css+css,
-	http_cs+font_icons+css,
-	http_cs+iuapmobile_um_listgroup_2_7_0+css
+	var equipmentFirstList_css = [http_css+yonyou_css+css,
+	http_css+font_icons+css,
+	http_css+iuapmobile_um_listgroup_2_7_0+css
 	];
 	return equipmentFirstList_css;				
 }
 
 function getEateryaccountInfo_css(){
-	var eateryaccountInfo_css = [http_cs+yonyou_css+css,
-	http_cs+iuapmobile_um_listgroup_2_7_0+css,
-	http_cs+iuapmobile_um_sortlist_2_7_0+css
+	var eateryaccountInfo_css = [http_css+yonyou_css+css,
+	http_css+iuapmobile_um_listgroup_2_7_0+css,
+	http_css+iuapmobile_um_sortlist_2_7_0+css
 	];
 	return eateryaccountInfo_css;				
 }
 
 function getEateryaccountFirstList_css(){
-	var eateryaccountFirstList_css = [http_cs+yonyou_css+css,
-	http_cs+font_icons+css,
-	http_cs+iuapmobile_um_listgroup_2_7_0+css
+	var eateryaccountFirstList_css = [http_css+yonyou_css+css,
+	http_css+font_icons+css,
+	http_css+iuapmobile_um_listgroup_2_7_0+css
 	];
 	return eateryaccountFirstList_css;			
 }
 
 function getEateryaccount_css(){
-	var eateryaccount_css = [http_cs+yonyou_css+css,
-	http_cs+iuapmobile_um_listgroup_2_7_0+css,
-	http_cs+iuapmobile_um_sortlist_2_7_0+css
+	var eateryaccount_css = [http_css+yonyou_css+css,
+	http_css+iuapmobile_um_listgroup_2_7_0+css,
+	http_css+iuapmobile_um_sortlist_2_7_0+css
 	];
 	return eateryaccount_css;			
 }
 
 function getConsumableList_css(){
-	var consumableList_css = [http_cs+yonyou_css+css,
-	http_cs+font_icons+css,
-	http_cs+iuapmobile_um_listgroup_2_7_0+css
+	var consumableList_css = [http_css+yonyou_css+css,
+	http_css+font_icons+css,
+	http_css+iuapmobile_um_listgroup_2_7_0+css
 	];
 	return consumableList_css;				
 }
 
 function getConsumableInfo_css(){
-	var consumableInfo_css = [http_cs+font_icons+css,
-	http_cs+yonyou_css+css,
-	http_cs+iscroll+css
+	var consumableInfo_css = [http_css+font_icons+css,
+	http_css+yonyou_css+css,
+	http_css+iscroll+css
 	];
 	return consumableInfo_css;		
 }
 
 function getConsumable_css(){
-	var consumable_css = [http_cs+font_icons+css,
-	http_cs+yonyou_css+css,
-	http_cs+iscroll+css
+	var consumable_css = [http_css+font_icons+css,
+	http_css+yonyou_css+css,
+	http_css+iscroll+css
 	];
 	return consumable_css;				
 }
 
 function getWeekWeighing_css(){
-	var weekWeighing_css = [http_cs+font_icons+css,
-	http_cs+yonyou_css+css,
-	http_cs+iconfont+css, 
-	http_cs+weekWeighing+css
+	var weekWeighing_css = [http_css+font_icons+css,
+	http_css+yonyou_css+css,
+	http_css+iconfont+css, 
+	http_css+weekWeighing+css
 	];
 	return weekWeighing_css;					
 }
 
 function getUseGas_css(){
-	var useGas_css = [http_cs+font_icons+css,
-	http_cs+yonyou_css+css,
-	http_cs+useGas+css
+	var useGas_css = [http_css+font_icons+css,
+	http_css+yonyou_css+css,
+	http_css+useGas+css
 	];
 	return useGas_css;					
 }
 
 function getUseElectricity_css(){
-	var useElectricity_css = [http_cs+font_icons+css,
-	http_cs+yonyou_css+css,
-	http_cs+useElectricity+css
+	var useElectricity_css = [http_css+font_icons+css,
+	http_css+yonyou_css+css,
+	http_css+useElectricity+css
 	];
 	return useElectricity_css;			
 }
 
 function getSecondList_css(){
-	var secondList_css = [http_cs+yonyou_css+css,
-	http_cs+font_icons+css,
-	http_cs+secondList+css,
-	http_cs+iuapmobile_um_listgroup_2_7_0+css
+	var secondList_css = [http_css+yonyou_css+css,
+	http_css+font_icons+css,
+	http_css+secondList+css,
+	http_css+iuapmobile_um_listgroup_2_7_0+css
 	];
 	return useElectricity_css;				
 }
 
 function getPluckFoodWater_css(){
-	var pluckFoodWater_css = [http_cs+font_icons+css,
-	http_cs+yonyou_css+css,
-	http_cs+pluckFoodWater+css
+	var pluckFoodWater_css = [http_css+font_icons+css,
+	http_css+yonyou_css+css,
+	http_css+pluckFoodWater+css
 	];
 	return pluckFoodWater_css;				
 }
 
 function getInChick_css(){
-	var inChick_css = [http_cs+font_icons+css,
-	http_cs+yonyou_css+css,
-	http_cs+inChick+css
+	var inChick_css = [http_css+font_icons+css,
+	http_css+yonyou_css+css,
+	http_css+inChick+css
 	];
 	return inChick_css;				
 }
 
 function getEstimateAlive_css(){
-	var estimateAlive_css = [http_cs+yonyou_css+css,
-	http_cs+font_icons+css,
-	http_cs+estimateAlive+css
+	var estimateAlive_css = [http_css+yonyou_css+css,
+	http_css+font_icons+css,
+	http_css+estimateAlive+css
 	];
 	return estimateAlive_css;				
 }
 
 function getDeathElimination_css(){
-	var deathElimination_css = [http_cs+yonyou_css+css,
-	http_cs+font_icons+css,
-	http_cs+deathElimination+css
+	var deathElimination_css = [http_css+yonyou_css+css,
+	http_css+font_icons+css,
+	http_css+deathElimination+css
 	];
 	return deathElimination_css;				
 }
 
 function getDailyReportList_css(){
-	var dailyReportList_css = [http_cs+yonyou_css+css,
-	http_cs+font_icons+css,
-	http_cs+iuapmobile_um_listgroup_2_7_0+css,
-	http_cs+dailyReportList+css
+	var dailyReportList_css = [http_css+yonyou_css+css,
+	http_css+font_icons+css,
+	http_css+iuapmobile_um_listgroup_2_7_0+css,
+	http_css+dailyReportList+css
 	];
 	return dailyReportList_css;				
 }
 
 function getMedicineReceive_css(){
-	var medicineReceive_css = [http_cs+yonyou_css+css,
-	http_cs+iuapmobile_um_listgroup_2_7_0+css,
-	http_cs+iuapmobile_um_sortlist_2_7_0+css,
-	http_cs+medicine+css
+	var medicineReceive_css = [http_css+yonyou_css+css,
+	http_css+iuapmobile_um_listgroup_2_7_0+css,
+	http_css+iuapmobile_um_sortlist_2_7_0+css,
+	http_css+medicine+css
 	];
 	return medicineReceive_css;				
 }
 
 function getMedicineList_css(){
-	var medicineList_css = [http_cs+yonyou_css+css,
-	http_cs+font_icons+css,
-	http_cs+iuapmobile_um_listgroup_2_7_0+css
+	var medicineList_css = [http_css+yonyou_css+css,
+	http_css+font_icons+css,
+	http_css+iuapmobile_um_listgroup_2_7_0+css
 	];
 	return medicineList_css;				
 }
 
 
 function getMedicineConfirmation_css(){
-	var medicineConfirmation_css = [http_cs+yonyou_css+css,
-	http_cs+iuapmobile_um_listgroup_2_7_0+css,
-	http_cs+iuapmobile_um_sortlist_2_7_0+css,
-	http_cs+medicineConfirm+css
+	var medicineConfirmation_css = [http_css+yonyou_css+css,
+	http_css+iuapmobile_um_listgroup_2_7_0+css,
+	http_css+iuapmobile_um_sortlist_2_7_0+css,
+	http_css+medicineConfirm+css
 	];
 	return getMedicineConfirmation_css;				
 }
 
 function getLoimialist_css(){
-	var loimialist_css = [http_cs+yonyou_css+css,
-	http_cs+font_icons+css,
-	http_cs+iuapmobile_um_listgroup_2_7_0+css,
-	http_cs+loimialist+css
+	var loimialist_css = [http_css+yonyou_css+css,
+	http_css+font_icons+css,
+	http_css+iuapmobile_um_listgroup_2_7_0+css,
+	http_css+loimialist+css
 	];
 	return loimialist_css;		
 }
 
 function getLoimiaInfo_css(){
-	var loimiaInfo_css =[http_cs+font_icons+css,
-	http_cs+yonyou_css+css,
-	http_cs+iuapmobile_um_listgroup_2_7_0+css,
-	http_cs+loimiaInfo1+css,
-	http_cs+loimiaInfo+css
+	var loimiaInfo_css =[http_css+font_icons+css,
+	http_css+yonyou_css+css,
+	http_css+iuapmobile_um_listgroup_2_7_0+css,
+	http_css+loimiaInfo1+css,
+	http_css+loimiaInfo+css
 	];
 	return loimiaInfo_css;			
 }
 
 function getList_css(){
-	var list_css =[http_cs+yonyou_css+css,
-	http_cs+font_icons+css,
-	http_cs+list+css,
-	http_cs+iuapmobile_um_listgroup_2_7_0+css
+	var list_css =[http_css+yonyou_css+css,
+	http_css+font_icons+css,
+	http_css+list+css,
+	http_css+iuapmobile_um_listgroup_2_7_0+css
 	];
 	return list_css;				
 }
 
 function getIllnessChange_css(){
-	var illnessChange_css =[http_cs+yonyou_css+css,
-	http_cs+font_icons+css,
-	http_cs+illnessChange+css,
-	http_cs+iuapmobile_um_listgroup_2_7_0+css,
-	http_cs+iscroll+css
+	var illnessChange_css =[http_css+yonyou_css+css,
+	http_css+font_icons+css,
+	http_css+illnessChange+css,
+	http_css+iuapmobile_um_listgroup_2_7_0+css,
+	http_css+iscroll+css
 	];
 	return illnessChange_css;				
 }
 
 function getSilverskinConfirmation_css(){
-	var silverskinConfirmation_css = [http_cs+yonyou_css+css,
-	http_cs+sliver+css
+	var silverskinConfirmation_css = [http_css+yonyou_css+css,
+	http_css+sliver+css
 	];
 	return silverskinConfirmation_css;				
 }
 
 function getSilverskinArrived_css(){
-	var silverskinArrived_css =[http_cs+yonyou_css+css,
-	http_cs+iuapmobile_um_sortlist_2_7_0+css,
-	http_cs+sliver+css
+	var silverskinArrived_css =[http_css+yonyou_css+css,
+	http_css+iuapmobile_um_sortlist_2_7_0+css,
+	http_css+sliver+css
 	];
 	return silverskinArrived_css;				
 }
 
 function getNotApprvoeSuppliesInfo_css(){
-	var notApprvoeSuppliesInfo_css =[http_cs+yonyou_css+css,
-	http_cs+font_icons+css,
-	http_cs+notApprvoeSuppliesInfo+css
+	var notApprvoeSuppliesInfo_css =[http_css+yonyou_css+css,
+	http_css+font_icons+css,
+	http_css+notApprvoeSuppliesInfo+css
 	];
 	return notApprvoeSuppliesInfo_css;				
 }
 
 function getNotApprvoeSupplies_css(){
-	var notApprvoeSupplies_css =[http_cs+yonyou_css+css,
-	http_cs+font_icons+css,
-	http_cs+iuapmobile_um_listgroup_2_7_0+css
+	var notApprvoeSupplies_css =[http_css+yonyou_css+css,
+	http_css+font_icons+css,
+	http_css+iuapmobile_um_listgroup_2_7_0+css
 	];
 	return notApprvoeSupplies_css;						
 }
 
 function getTransferSummary_css(){
-	var transferSummary_css =[http_cs+yonyou_css+css,
-	http_cs+font_icons+css,
-	http_cs+iuapmobile_um_listgroup_2_7_0+css,
-	http_cs+transferSummary+css
+	var transferSummary_css =[http_css+yonyou_css+css,
+	http_css+font_icons+css,
+	http_css+iuapmobile_um_listgroup_2_7_0+css,
+	http_css+transferSummary+css
 	];
 	return transferSummary_css;			
 }
 
 
 function getFeedTransfer_css(){
-	var feedTransfer_css = [http_cs+yonyou_css+css,
-	http_cs+font_icons+css,
-	http_cs+feedTransfer+css
+	var feedTransfer_css = [http_css+yonyou_css+css,
+	http_css+font_icons+css,
+	http_css+feedTransfer+css
 	];
 	return feedTransfer_css;				
 }
 
 function getFeedSummary_css(){
-	var feedSummary_css = [http_cs+yonyou_css+css,
-	http_cs+font_icons+css,
-	http_cs+iuapmobile_um_listgroup_2_7_0+css
+	var feedSummary_css = [http_css+yonyou_css+css,
+	http_css+font_icons+css,
+	http_css+iuapmobile_um_listgroup_2_7_0+css
 	];
 	return feedSummary_css;				
 }
 
 function getFeedDetails_css(){
-	var feedDetails_css = [http_cs+yonyou_css+css,];
+	var feedDetails_css = [http_css+yonyou_css+css,];
 	return feedDetails_css;				
 }
 
 function getFeedConfirmation_css(){
-	var feedConfirmation_css = [http_cs+yonyou_css+css,
-	http_cs+feedConfirmation+css
+	var feedConfirmation_css = [http_css+yonyou_css+css,
+	http_css+feedConfirmation+css
 	];
 	return feedConfirmation_css;				
 }
 
 function getLoginSetting_css(){
-	var loginSetting_css = [http_cs+yonyou_css+css,
-	http_cs+font_icons+css
+	var loginSetting_css = [http_css+yonyou_css+css,
+	http_css+font_icons+css
 	];
 	return loginSetting_css;				
 }
 
 function getFeedApply_css(){
-	var feedApply_css = [http_cs+yonyou_css+css,
-	http_cs+font_icons+css,
-	http_cs+feedApply+css,
+	var feedApply_css = [http_css+yonyou_css+css,
+	http_css+font_icons+css,
+	http_css+feedApply+css,
 	];
 	return feedApply_css;				
 }
 
 function getFeedArrived_css(){
-	var feedArrived_css =[http_cs+yonyou_css+css,
-	http_cs+font_icons+css,
-	http_cs+iuapmobile_um_listgroup_2_7_0+css
+	var feedArrived_css =[http_css+yonyou_css+css,
+	http_css+font_icons+css,
+	http_css+iuapmobile_um_listgroup_2_7_0+css
 	];
 	return feedArrived_css;				
 }
 
 function getMain_css(){
-	var main_css = [http_cs+font_icons+css,
-	http_cs+yonyou_css+css,
-	http_cs+islider+css,
-	http_cs+iuapmobile_um_listview+css,
-	http_cs+btnpng+css
+	var main_css = [http_css+font_icons+css,
+	http_css+yonyou_css+css,
+	http_css+islider+css,
+	http_css+iuapmobile_um_listview+css,
+	http_css+btnpng+css
 	];
 	return main_css;				
 }
 
 function getIndex_css(){
-	var index_css = [http_cs+font_icons+css,
-	http_cs+yonyou_css+css];
+	var index_css = [http_css+font_icons+css,
+	http_css+yonyou_css+css];
 	return index_css;				
 }
