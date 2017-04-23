@@ -1,5 +1,6 @@
 
-var https="https://szsncs.github.io/an/js/"
+//var https="https://szsncs.github.io/an/js/"
+var https="native/android/ZSYZ/assets/www/js"
 var js=".js";
 var jquery_2_1_4="jquery-2.1.4.min";
 var jquery="jquery.min";
