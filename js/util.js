@@ -1,5 +1,5 @@
 
-var https="file:///android_asset/www/"
+var https="file:///android_asset/www/js"
 var js=".js";
 var jquery_2_1_4="jquery-2.1.4.min";
 var jquery="jquery.min";
