@@ -1,5 +1,4 @@
-
-var https="file:///android_asset/www/js/"
+var https="../../js/"
 var js=".js";
 var jquery_2_1_4="jquery-2.1.4.min";
 var jquery="jquery.min";
@@ -302,7 +301,7 @@ function getMain_js(url){
 }
 
 function getIndex_js(url){//引入登录界面js	2
-	var index_js = [https+url+js];
+	var index_js = ["../js/"+url+js];
 	return jquery_min_2_1_4.concat(index_js.concat(yonyou_js));				
 }
 
@@ -809,7 +808,7 @@ function getMain_css(){
 }
 
 function getIndex_css(){
-	var index_css = [http_cs+font_icons+css,
+	var index_css = ["../css/"+font_icons+css,
 	http_cs+yonyou_css+css];
 	return index_css;				
 }
