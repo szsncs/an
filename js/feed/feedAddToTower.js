@@ -3,9 +3,9 @@ var feedAddToTower = {
 	viewid : "com.sunnercn.feed.FeedAddToTowerController",
 	init:function(){
 		var data = $cache.read("logininfo");
-		var lonininfo = JSON.parse(data);
+		var logininfo = JSON.parse(data);
 		var json = {
-			logininfo:lonininfo
+			logininfo:logininfo
 		}
 		summer.showProgress({
 	           // "title" : "加载中..."
@@ -45,6 +45,65 @@ var feedAddToTower = {
 		});
 
 	},
+	initsiloSelect:function(){
+		var logininfo = $cache.read("logininfo");
+		var json = JSON.parse(logininfo);
+		var siloinfoList = json.siloinfo;
+		$(".siloSelect").html("");
+		var optionhtml= '<option>-请选择料塔-</option>';
+		for(var i=0;i<siloinfoList.length;i++){
+			optionhtml+='<option pk_silo="'+siloinfoList[i].pk_silo+'">'+siloinfoList[i].silo_name+'</option>'
+		}
+		$(".siloSelect").append(optionhtml);
+	},
+	loadPage:function(data){
+		$(".um-list").html("");
+		var html = "";
+		var inbill = data.billinfo.inbill;
+		if(inbill.length>0){
+			for(var i=0;i<inbill.length;i++){
+				html+='<li class="um-list-item">'
+					+'<a href="javascript:;" class="btn">'
+					+'<div class="um-media-body">'
+					+'<h4>车牌号：'+inbill[i].carno+'</h4>'
+					+'<p>'
+					+'未打料数量：<span>'+inbill[i].notInTower+'</span>吨'
+					+'</p>'
+					+'</div> </a>'
+					+'</li>'
+					+'<ul class="um-list allTower">'
+					+'<li class="towers">'
+					+'<div class="tower">'
+					+'<select class ="siloSelect"></select>'
+					+'</div>'
+					+'<div class="num">'
+					+'数量 <input type="number"/> 吨'
+					+'</div>'
+					+'</li>'
+			}
+			html+='<li>'
+            +'<div>'
+            +'<a href="#" class="ti-plus"></a>'
+            +'</div>'
+			+'<div>'
+			+'<a href="#" class="ti-minus"></a>'
+			+'</div>'
+			+'</li>'
+			+'</ul>';
+			$("#feedConfirm").show();
+		}else{//无列表信息弹出提示并绘制空列表
+			html+='<a href="#"  class="um-list-item list_item" >'
+					+'		<div class="um-list-item-media">'
+					+'		</div>'
+					+'		<div class="um-list-item-inner">'
+					+'			<div class="um-list-item-body">'
+					+'				<h4 class="um-media-heading f18" style="color:red">当前场内所有饲料已经打入料塔</h4>'
+					+'			</div>'
+					+'		</div> </a>'
+		}
+		$(".um-list").html(html);
+		feedAddToTower.initsiloSelect();
+	}
 }
 /**
  * 接口回调模块 
@@ -52,7 +111,7 @@ var feedAddToTower = {
 function callBack(args){
 	summer.hideProgress();
 	if(args.status == "0"){
-		//feedAddToTower.loadPage(args.data);
+		feedAddToTower.loadPage(args.data);
 	}else if(args.status == "1"){
 		alert("初始化失败:"+args.message);
 		summer.closeWin();
