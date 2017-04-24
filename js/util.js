@@ -293,6 +293,7 @@ function getFeedSummary_js(url){
 }
 function getFeedAddToTower_js(url){
 	var feedAddToTower_js = [https+frameworks_ui+js,
+							https+summer+js,
 							https+url+js];
 	return jquery_min.concat(feedAddToTower_js);
 }
