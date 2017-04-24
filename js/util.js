@@ -1123,7 +1123,7 @@ function getIndex_css(){
 	http_css+yonyou_css+css];
 	return index_css;				
 }
-$(function(){
+window.onload = function(){
 	$("input[type='number']").on('keyup', function(event) {
 			var $amountInput = $(this);
 			//响应鼠标事件，允许左右方向键移动
@@ -1143,4 +1143,4 @@ $(function(){
 			//最后一位是小数点的话，移除
 			$amountInput.val(($amountInput.val().replace(/\.$/g, "")));
 		});
-})
+};
