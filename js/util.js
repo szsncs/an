@@ -294,7 +294,7 @@ function getFeedSummary_js(url){
 }
 function getFeedAddToTower_js(url){
 	var feedAddToTower_js = [https+url+js];
-	return jquery_min.concat(yonyou_js。concat(feedAddToTower_js));
+	return jquery_min.concat(yonyou_js.concat(feedAddToTower_js));
 }
 function getFeedDetails_js(url){
 	var feedDetails_js = [https+url+js,];
