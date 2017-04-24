@@ -10,7 +10,7 @@ var feedAddToTower = {
 		summer.showProgress({
 	           // "title" : "加载中..."
 	        });
-	        callAction(silverskinArrived.viewid,"addFeedInfoInit",json,"callBack");
+	        callAction(feedAddToTower.viewid,"addFeedInfoInit",json,"callBack");
 	},
 	bindEvent:function(){
 		$(".allTower li").hide();
