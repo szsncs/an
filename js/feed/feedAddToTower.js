@@ -29,8 +29,8 @@ var feedAddToTower = {
 		});
 		$(".ti-minus").on('click',function(){
 			// to do 行数限制
-			var lis = $(".towers");
-			lis.length>1?$(this).parent().parent().before().remove():UM.alert("对不起！至少一个料塔！");
+			var lis = $(this).parent().parent().parent().find("li");
+			lis.length>2?lis[lis.length-2].remove():UM.alert("对不起！请至少选一个料塔！");
 		});
 		$(".ti-home").unbind().on("click",function(){
 			//保存按钮
