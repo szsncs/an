@@ -57,7 +57,7 @@ var feedAddToTower = {
 		$(".siloSelect").append(optionhtml);
 	},
 	loadPage:function(data){
-		$(".um-list").html("");
+		$("#inbillListul").html("");
 		var html = "";
 		var inbill = data.billinfo.inbill;
 		if(inbill.length>0){
@@ -90,7 +90,6 @@ var feedAddToTower = {
 			+'</div>'
 			+'</li>'
 			+'</ul>';
-			$("#feedConfirm").show();
 		}else{//无列表信息弹出提示并绘制空列表
 			html+='<a href="#"  class="um-list-item list_item" >'
 					+'		<div class="um-list-item-media">'
@@ -101,7 +100,7 @@ var feedAddToTower = {
 					+'			</div>'
 					+'		</div> </a>'
 		}
-		$(".um-list").html(html);
+		$("#inbillListul").html(html);
 		feedAddToTower.initsiloSelect();
 	}
 }
