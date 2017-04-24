@@ -766,7 +766,7 @@ function ingVersion(){
 
 
 //var https_css="https://szsncs.github.io/an/css/";
-var https_css=isOs()=="android"?"file:///android_asset/www/css/":"file:///ios_asset/www/css/";
+var https_css=isOs()=="android"?"file:///android_asset/www/css/":isOs()=="ios"?"file:///ios_asset/www/css/":"E:/FJSN_ZSYZWorkspace/ZSYZ/css/";
 var szsn_app = "szsn-app/";
 var css = ".css";
 var yonyou_css = "iuapmobile.um";
