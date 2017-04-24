@@ -1,4 +1,35 @@
-var https="file:///android_asset/www/js/";
+function isOs(){
+    var browser={
+        info:function(){
+            var ua = navigator.userAgent, app = navigator.appVersion;
+            return { //移动终端浏览器版本信息
+                //trident: ua.indexOf('Trident') > -1, //IE内核
+                //presto: ua.indexOf('Presto') > -1, //opera内核
+                webKit: ua.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+                //gecko: ua.indexOf('Gecko') > -1 && ua.indexOf('KHTML') == -1, //火狐内核
+                mobile: !!ua.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+                ios: !!ua.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+                android: ua.indexOf('Android') > -1 || ua.indexOf('Linux') > -1, //android终端或uc浏览器
+                iPhone: ua.indexOf('iPhone') > -1 , //是否为iPhone或者QQHD浏览器
+                iPad: ua.indexOf('iPad') > -1, //是否iPad
+                //webApp: ua.indexOf('Safari') == -1 //是否web应该程序，没有头部与底部
+				platform: navigator.platform
+            };
+        }(),
+        lang:(navigator.browserLanguage || navigator.language).toLowerCase()
+    };
+	if(browser.info.platform.toLowerCase().indexOf("win")>=0){
+		return "pc"
+	}else if(browser.info.android){
+        return "android";
+    }else if(browser.info.ios || browser.info.iPhone || browser.info.iPad){
+        return "ios";
+    }else{
+		return "";
+	}
+}
+
+var https=isOs()=="android"?"file:///android_asset/www/js/":"file:///ios/www/js/";
 var js=".js";
 var jquery_2_1_4="jquery-2.1.4.min";
 var jquery="jquery.min";
@@ -454,36 +485,7 @@ function round(num,d){
 	//Step：返回num缩小10的d次方倍，获得最终结果
 	return num/Math.pow(10,d);
 }
-function isOs(){
-    var browser={
-        info:function(){
-            var ua = navigator.userAgent, app = navigator.appVersion;
-            return { //移动终端浏览器版本信息
-                //trident: ua.indexOf('Trident') > -1, //IE内核
-                //presto: ua.indexOf('Presto') > -1, //opera内核
-                webKit: ua.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
-                //gecko: ua.indexOf('Gecko') > -1 && ua.indexOf('KHTML') == -1, //火狐内核
-                mobile: !!ua.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
-                ios: !!ua.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
-                android: ua.indexOf('Android') > -1 || ua.indexOf('Linux') > -1, //android终端或uc浏览器
-                iPhone: ua.indexOf('iPhone') > -1 , //是否为iPhone或者QQHD浏览器
-                iPad: ua.indexOf('iPad') > -1, //是否iPad
-                //webApp: ua.indexOf('Safari') == -1 //是否web应该程序，没有头部与底部
-				platform: navigator.platform
-            };
-        }(),
-        lang:(navigator.browserLanguage || navigator.language).toLowerCase()
-    };
-	if(browser.info.platform.toLowerCase().indexOf("win")>=0){
-		return "pc"
-	}else if(browser.info.android){
-        return "android";
-    }else if(browser.info.ios || browser.info.iPhone || browser.info.iPad){
-        return "ios";
-    }else{
-		return "";
-	}
-}
+
 /**
  * 原生ajax 
  * @param {Object} opt
@@ -607,7 +609,8 @@ function ingVersion(){
 
 
 
-var https_css="https://szsncs.github.io/an/css/";
+//var https_css="https://szsncs.github.io/an/css/";
+var https_css=isOs()=="android"?"file:///android_asset/www/css/":"file:///ios/www/css/";
 var szsn_app = "szsn-app/";
 var css = ".css";
 var yonyou_css = "iuapmobile.um";
