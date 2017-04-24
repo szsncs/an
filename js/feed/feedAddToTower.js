@@ -63,6 +63,10 @@ var feedAddToTower = {
 		if(inbill.length>0){
 			for(var i=0;i<inbill.length;i++){
 				html+='<li class="um-list-item">'
+					+'<label class="um-check-inline">'
+                    +'<input name="um-checkbox-inline" type="checkbox">'
+                    +'<span class="um-icon-checkbox um-css3-vc"></span>'
+                    +'</label>'
 					+'<a href="javascript:;" class="btn">'
 					+'<div class="um-media-body">'
 					+'<h4>车牌号：'+inbill[i].carno+'</h4>'
