@@ -27,7 +27,7 @@ var feedAddToTower = {
 			$(".ti-minus").on('click',function(){
 				// to do 行数限制
 				var lis = $(".towers");
-				lis[lis.length-1].remove();
+				lis.length>1?lis[lis.length-1].remove():UM.alert("对不起！至少一个料塔！");
 			});
 		$(".um-back").click(function(){
 			summer.closeWin();
