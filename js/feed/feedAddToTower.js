@@ -38,4 +38,5 @@ var feedAddToTower = {
 }
 summerready = function(){
 	feedAddToTower.init();
+	feedAddToTower.bindEvent();
 };
