@@ -18,10 +18,16 @@ var feedAddToTower = {
 				$(this).parent().parent().find("ul li").stop().slideToggle(400);
 			});
 			$(".ti-plus").on('click',function(){
+				// to do 行数限制
 				var li = "<li class='towers'>";
 				li+=$($(".towers")[0]).html();
 				li+="</li>";
 				$(this).parent().parent().before($(li));
+			});
+			$(".ti-minus").on('click',function(){
+				// to do 行数限制
+				var lis = $(".towers");
+				lis.remove(lis[lis.length-1]);
 			});
 		$(".um-back").click(function(){
 			summer.closeWin();
