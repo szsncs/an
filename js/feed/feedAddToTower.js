@@ -84,16 +84,16 @@ var feedAddToTower = {
 					+'数量 <input type="number"/> 吨'
 					+'</div>'
 					+'</li>'
+					+'<li>'
+		            +'<div>'
+		            +'<a href="#" class="ti-plus"></a>'
+		            +'</div>'
+					+'<div>'
+					+'<a href="#" class="ti-minus"></a>'
+					+'</div>'
+					+'</li>'
+					+'</ul>';
 			}
-			html+='<li>'
-            +'<div>'
-            +'<a href="#" class="ti-plus"></a>'
-            +'</div>'
-			+'<div>'
-			+'<a href="#" class="ti-minus"></a>'
-			+'</div>'
-			+'</li>'
-			+'</ul>';
 		}else{//无列表信息弹出提示并绘制空列表
 			html+='<a href="#"  class="um-list-item list_item" >'
 					+'		<div class="um-list-item-media">'
