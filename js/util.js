@@ -459,9 +459,8 @@ function round(num,d){
  * 原生ajax 
  * @param {Object} opt
  */
-function ajax(opt) {
+ function ajax(opt) {
          opt = opt || {};
-         //opt.method = opt.method.toUpperCase() || 'POST';
          opt.url = opt.url || '';
          opt.success = opt.success || function () {};
          opt.error = opt.error || function () {};
@@ -471,15 +470,12 @@ function ajax(opt) {
          }
          else {
              xmlHttp = new ActiveXObject('Microsoft.XMLHTTP');
-         }var params = [];
-       
-         var postData = params.join('&');
-         if (opt.method.toUpperCase() === 'POST') {
+         }
+         if (opt.method === 'POST') {
              xmlHttp.open(opt.method, opt.url, opt.async);
              xmlHttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded;charset=utf-8');
-             xmlHttp.send(postData);
          }
-         else if (opt.method.toUpperCase() === 'GET') {
+         else if (opt.method === 'GET') {
              xmlHttp.open(opt.method, opt.url + '?' + postData, opt.async);
              xmlHttp.send(null);
          } 
@@ -491,6 +487,9 @@ function ajax(opt) {
              }
          };
      }
+
+
+
 
 
 
