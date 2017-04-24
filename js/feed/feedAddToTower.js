@@ -32,17 +32,6 @@ var feedAddToTower = {
 			var lis = $(this).parent().parent().parent().find("li");
 			lis.length>2?lis[lis.length-2].remove():UM.alert("对不起！请至少选一个料塔！");
 		});
-		$(".ti-home").unbind().on("click",function(){
-			//保存按钮
-			summer.openWin({
-                "id" : 'home',
-                "url" : 'html/main.html'
-            });
-		});
-		$(".ti-home").click(function(){
-			summer.closeWin();
-		});
-
 	},
 	initsiloSelect:function(){
 		var logininfo = $cache.read("logininfo");
