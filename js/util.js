@@ -29,7 +29,7 @@ function isOs(){
 	}
 }
 
-var https=isOs()=="android"?"file:///android_asset/www/js/":"file:///www/js/";
+var https=isOs()=="android"?"file:///android_asset/www/js/":"file:///ios_asset/www/js/";
 var js=".js";
 var jquery_2_1_4="jquery-2.1.4.min";
 var jquery="jquery.min";
@@ -610,7 +610,7 @@ function ingVersion(){
 
 
 //var https_css="https://szsncs.github.io/an/css/";
-var https_css=isOs()=="android"?"file:///android_asset/www/css/":"file:///www/css/";
+var https_css=isOs()=="android"?"file:///android_asset/www/css/":"file:///ios_asset/www/css/";
 var szsn_app = "szsn-app/";
 var css = ".css";
 var yonyou_css = "iuapmobile.um";
