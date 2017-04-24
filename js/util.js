@@ -492,7 +492,7 @@ function round(num,d){
 /**
  * 版本升级
  */
-function testingVersion(){
+function ingVersion(){
         //服务器端版本
         var jsonVersionInfoOfServer = null;
         //当前应用版本号
