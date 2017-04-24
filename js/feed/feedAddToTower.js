@@ -2,15 +2,15 @@ var feedAddToTower = {
 	data:{},
 	viewid : "com.sunnercn.silverskin.FeedAddToTowerController",
 	init:function(){
-		//var data = $cache.read("logininfo");
-		//var lonininfo = JSON.parse(data);
-		//var json = {
+		var data = $cache.read("logininfo");
+		var lonininfo = JSON.parse(data);
+		var json = {
 			//logininfo:lonininfo
-		//}
-		//summer.showProgress({
+		}
+		summer.showProgress({
 	           // "title" : "加载中..."
-	        //});
-	        //callAction(silverskinArrived.viewid,"addFeedInfoInit",json,"callBack");
+	        });
+	        callAction(silverskinArrived.viewid,"addFeedInfoInit",json,"callBack");
 	},
 	bindEvent:function(){
 		$(".allTower li").hide();
