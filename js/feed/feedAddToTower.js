@@ -2,11 +2,7 @@ var feedAddToTower = {
 	data:{},
 	viewid : "com.sunnercn.silverskin.FeedAddToTowerController",
 	init:function(){
-			$(".allTower li").hide();
-			$(".btn").on('click',function(){
-				$(this).parent().parent().find("ul li").stop().slideToggle(400);
-			});
-			//$(".ti-plus").on();
+			
 			var data = $cache.read("logininfo");
 			var lonininfo = JSON.parse(data);
 			var json = {
@@ -18,6 +14,11 @@ var feedAddToTower = {
 	        callAction(silverskinArrived.viewid,"addFeedInfoInit",json,"callBack");
 	},
 	bindEvent:function(){
+		$(".allTower li").hide();
+			$(".btn").on('click',function(){
+				$(this).parent().parent().find("ul li").stop().slideToggle(400);
+			});
+			//$(".ti-plus").on();
 		$(".um-back").click(function(){
 			summer.closeWin();
 		});
