@@ -17,7 +17,12 @@ var feedAddToTower = {
 			$(".btn").on('click',function(){
 				$(this).parent().parent().find("ul li").stop().slideToggle(400);
 			});
-			//$(".ti-plus").on();
+			$(".ti-plus").on('click',function(){
+				var li = "<li>";
+				li+=$($(".towers")[0]).html();
+				li+="</li>";
+				$(".towers").append($(li));
+			});
 		$(".um-back").click(function(){
 			summer.closeWin();
 		});
