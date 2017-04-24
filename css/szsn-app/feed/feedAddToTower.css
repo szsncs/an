@@ -22,6 +22,9 @@ input[type="number"]{
 	border-radius: 8px;
 	border: solid 1px #ccc;
 }
+.allTower{
+	border-bottom:1px solid #000000;
+}
 .allTower li{
 	margin: 10px;
 	padding: 5px;
@@ -36,3 +39,19 @@ input[type="number"]{
 .ti-minus{
 	margin-right: 40px;
 }
+.um-icon-checkbox{
+    width: 39px;
+    height: 39px;
+}
+.um-media-body p{
+    padding-left: 120px;
+}
+.um-media-body h4{
+    padding-left: 60px;
+}
+
+input[type="radio"]:checked ~ .um-icon-checkbox:before, input[type="checkbox"]:checked ~ .um-icon-checkbox:before {
+    width: 20px;
+    top: 13px;
+    left: 9px;
+ }
