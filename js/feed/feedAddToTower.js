@@ -60,7 +60,7 @@ var feedAddToTower = {
 		var html = "";
 		var inbill = data.billinfo.inbill;
 		if(inbill.length>0){
-			for(var j=0;j<inbill.length;i++){
+			for(var j=0;j<inbill.length;j++){
 			for(var i=0;i<inbill.length;i++){
 				html+='<li class="um-list-item">'
 					+'<a href="javascript:;" class="btn">'
