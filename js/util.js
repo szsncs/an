@@ -461,7 +461,7 @@ function round(num,d){
  */
 function ajax(opt) {
          opt = opt || {};
-         opt.method = opt.method.toUpperCase() || 'POST';
+         //opt.method = opt.method.toUpperCase() || 'POST';
          opt.url = opt.url || '';
          opt.success = opt.success || function () {};
          opt.error = opt.error || function () {};
