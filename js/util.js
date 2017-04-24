@@ -489,8 +489,83 @@ function round(num,d){
      }
 
 
+/**
+ * 版本升级
+ */
+function testingVersion(){
+        //服务器端版本
+        var jsonVersionInfoOfServer = null;
+        //当前应用版本号
+        var jsonVersionInfoOfClient = null;
+
+        var os = $summer.os;
+        var url = "http://123.103.9.205:8090/mwap/version/version.json";
+        $.ajax({
+            type : 'get',
+            url : url,
+            data : {},
+            cache : false,
+            dataType : 'json',
+            success : function(ret) {
+                if (os == "android"){
+                    jsonVersionInfoOfServer = {
+                        versionCode : ret.android_versioncode,
+                        versionName : ret.android_versionname,
+                        download : ret.android_download
+                    };
+                }else if(os == "ios"){
+                    jsonVersionInfoOfServer = {
+                        versionCode : ret.ios_versioncode,
+                        versionName : ret.ios_versionname,
+                        download : ret.ios_download
+                    };
+                }
+
+                //第二步、获取当前APP的版本信息
+                var versionInfo = summer.getVersion();
+
+                if(typeof versionInfo == "string"){
+                    //安卓走这里
+                    //alert("当前版本信息为"+ versionInfo);
+                    jsonVersionInfoOfClient = JSON.parse(versionInfo);
+                }else if(typeof versionInfo == "object"){
+                    //alert("当前版本信息转换类型后为"+ JSON.stringify(versionInfo));
+                    jsonVersionInfoOfClient = versionInfo;
+                }
+
+                if(parseInt(jsonVersionInfoOfServer.versionCode) > parseInt(jsonVersionInfoOfClient.versionCode)){
+                    summer.upgrade({
+                        "url":"http://123.103.9.205:8090/mwap/"+jsonVersionInfoOfServer.download,
+                        showProgress:false,
+                        "version":{
+                            versionCode:jsonVersionInfoOfServer.versionCode,
+                            versionName:jsonVersionInfoOfServer.versionName
+                        }
+                    }, function(reg){
+                        $('.boxShadow').removeClass('none');
+                        if(reg.status == '0'){
+                            alert("app升级完毕");
+                            $('.boxShadow').addClass('none');
+                            summer.openWin({
+                                url:'index.html',
+                                isKeep:false
+                            });
+                        }else{
+                         $('.um-progress-bar').html(reg.percent+'%').width($('.um-progress').width()/100*parseInt(reg.percent));
+                        }
+                    },function(){
+                        alert("app升级error");
+                    })
+                }else{
 
 
+                }
+            },
+            error:function(response){
+                alert("请求服务器失败");
+            }
+        });
+    }
 
 
 
