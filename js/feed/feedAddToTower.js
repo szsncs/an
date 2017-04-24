@@ -51,18 +51,19 @@ var feedAddToTower = {
  */
 function callBack(args){
 	summer.hideProgress();
-	//alert(JSON.stringify(arg));
 	if(args.status == "0"){
 		//feedAddToTower.loadPage(args.data);
 	}else if(args.status == "1"){
 		alert("初始化失败:"+args.message);
-		//lastPageRefresh("refresh","html","main");
 		summer.closeWin();
 	} else {
 		alert(args.message);	
-		//lastPageRefresh("refresh","html","main");
 		summer.closeWin();
 	}		
+}
+function erresg(arg){
+	summer.hideProgress();
+	UM.alert("网络异常！");
 }
 summerready = function(){
 	feedAddToTower.init();
