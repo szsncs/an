@@ -21,7 +21,7 @@ var feedAddToTower = {
 				var li = "<li class='towers'>";
 				li+=$($(".towers")[0]).html();
 				li+="</li>";
-				$(".towers").append($(li));
+				$(this).before($(li));
 			});
 		$(".um-back").click(function(){
 			summer.closeWin();
