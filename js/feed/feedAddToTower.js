@@ -5,7 +5,7 @@ var feedAddToTower = {
 		var data = $cache.read("logininfo");
 		var lonininfo = JSON.parse(data);
 		var json = {
-			//logininfo:lonininfo
+			logininfo:lonininfo
 		}
 		summer.showProgress({
 	           // "title" : "加载中..."
