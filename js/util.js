@@ -1138,7 +1138,7 @@ window.onload = function(){
 			//只能输入小数点后两位
 			replace(".", "$#$").replace(/\./g, "").replace("$#$", ".").replace(/^(\-)*(\d+)\.(\d\d).*$/, '$1$2.$3'));
 		});
-		$(".applyNum").on('blur', function() {
+		$("input[type='number']").on('blur', function() {
 			var $amountInput = $(this);
 			//最后一位是小数点的话，移除
 			$amountInput.val(($amountInput.val().replace(/\.$/g, "")));
