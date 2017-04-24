@@ -472,11 +472,11 @@ function round(num,d){
              xmlHttp = new ActiveXObject('Microsoft.XMLHTTP');
          }
          if (opt.method === 'POST') {
-             xmlHttp.open(opt.method, opt.url, opt.async);
+             xmlHttp.open(opt.method, opt.url, false);
              xmlHttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded;charset=utf-8');
          }
          else if (opt.method === 'GET') {
-             xmlHttp.open(opt.method, opt.url + '?' + postData, opt.async);
+             xmlHttp.open(opt.method, opt.url,false);
              xmlHttp.send(null);
          } 
          xmlHttp.onreadystatechange = function () {
