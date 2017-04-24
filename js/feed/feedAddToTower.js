@@ -9,8 +9,8 @@ var feedAddToTower = {
 		}
 		summer.showProgress({
 	           // "title" : "加载中..."
-	        });
-	        callAction(feedAddToTower.viewid,"addFeedInfoInit",json,"callBack");
+	    });
+	    callAction(feedAddToTower.viewid,"addFeedInfoInit",json,"callBack");
 	},
 	bindEvent:function(){
 		$(".allTower li").hide();
@@ -45,6 +45,24 @@ var feedAddToTower = {
 		});
 
 	},
+}
+/**
+ * 接口回调模块 
+ */
+function callBack(args){
+	summer.hideProgress();
+	//alert(JSON.stringify(arg));
+	if(args.status == "0"){
+		//feedAddToTower.loadPage(args.data);
+	}else if(args.status == "1"){
+		alert("初始化失败:"+args.message);
+		//lastPageRefresh("refresh","html","main");
+		summer.closeWin();
+	} else {
+		alert(args.message);	
+		//lastPageRefresh("refresh","html","main");
+		summer.closeWin();
+	}		
 }
 summerready = function(){
 	feedAddToTower.init();
