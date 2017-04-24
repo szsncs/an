@@ -17,17 +17,17 @@ var feedAddToTower = {
 			summer.closeWin();
 		});
 		$(".allTower li").hide();
-		$(".btn").on('click',function(){
+		$(".btn").unbind().on('click',function(){
 			$(this).parent().next().find("li").stop().slideToggle(400);
 		});
-		$(".ti-plus").on('click',function(){
+		$(".ti-plus").unbind().on('click',function(){
 			// to do 行数限制
 			var li = "<li class='towers'>";
 			li+=$($(".towers")[0]).html();
 			li+="</li>";
 			$(this).parent().parent().before($(li));
 		});
-		$(".ti-minus").on('click',function(){
+		$(".ti-minus").unbind().on('click',function(){
 			// to do 行数限制
 			var lis = $(this).parent().parent().parent().find("li");
 			lis.length>2?lis[lis.length-2].remove():UM.alert("对不起！请至少选一个料塔！");
