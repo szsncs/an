@@ -13,26 +13,25 @@ var feedAddToTower = {
 	    callAction(feedAddToTower.viewid,"addFeedInfoInit",json,"callBack");
 	},
 	bindEvent:function(){
-		$(".allTower li").hide();
-			$(".btn").on('click',function(){
-				$(this).parent().parent().find("ul li").stop().slideToggle(400);
-			});
-			$(".ti-plus").on('click',function(){
-				// to do 行数限制
-				var li = "<li class='towers'>";
-				li+=$($(".towers")[0]).html();
-				li+="</li>";
-				$(this).parent().parent().before($(li));
-			});
-			$(".ti-minus").on('click',function(){
-				// to do 行数限制
-				var lis = $(".towers");
-				lis.length>1?lis[lis.length-1].remove():UM.alert("对不起！至少一个料塔！");
-			});
 		$(".um-back").click(function(){
 			summer.closeWin();
 		});
-		
+		$(".allTower li").hide();
+		$(".btn").on('click',function(){
+			$(this).parent().parent().find("ul li").stop().slideToggle(400);
+		});
+		$(".ti-plus").on('click',function(){
+			// to do 行数限制
+			var li = "<li class='towers'>";
+			li+=$($(".towers")[0]).html();
+			li+="</li>";
+			$(this).parent().parent().before($(li));
+		});
+		$(".ti-minus").on('click',function(){
+			// to do 行数限制
+			var lis = $(".towers");
+			lis.length>1?lis[lis.length-1].remove():UM.alert("对不起！至少一个料塔！");
+		});
 		$(".ti-home").unbind().on("click",function(){
 			//保存按钮
 			summer.openWin({
@@ -106,6 +105,7 @@ var feedAddToTower = {
 		}
 		$("#inbillListul").html(html);
 		feedAddToTower.initsiloSelect();
+		feedAddToTower.bindEvent();
 	}
 }
 /**
