@@ -459,13 +459,12 @@ function round(num,d){
  * 原生ajax 
  * @param {Object} opt
  */
- function ajax(opt) {
-          opt = opt || {};
+function ajax(opt) {
+         opt = opt || {};
          opt.method = opt.method.toUpperCase() || 'POST';
          opt.url = opt.url || '';
-         opt.async = opt.async || true;
-         opt.data = opt.data || null;
          opt.success = opt.success || function () {};
+         opt.error = opt.error || function () {};
          var xmlHttp = null;
          if (XMLHttpRequest) {
              xmlHttp = new XMLHttpRequest();
@@ -473,9 +472,7 @@ function round(num,d){
          else {
              xmlHttp = new ActiveXObject('Microsoft.XMLHTTP');
          }var params = [];
-         for (var key in opt.data){
-             params.push(key + '=' + opt.data[key]);
-         }
+       
          var postData = params.join('&');
          if (opt.method.toUpperCase() === 'POST') {
              xmlHttp.open(opt.method, opt.url, opt.async);
@@ -489,12 +486,11 @@ function round(num,d){
          xmlHttp.onreadystatechange = function () {
              if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
                  opt.success(xmlHttp.responseText);
+             }else{
+             	opt.error(xmlHttp.responseText);
              }
          };
      }
-
-
-
 
 
 
