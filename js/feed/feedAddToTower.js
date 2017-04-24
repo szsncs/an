@@ -1,6 +1,6 @@
 var feedAddToTower = {
 	data:{},
-	viewid : "com.sunnercn.silverskin.FeedAddToTowerController",
+	viewid : "com.sunnercn.feed.FeedAddToTowerController",
 	init:function(){
 		var data = $cache.read("logininfo");
 		var lonininfo = JSON.parse(data);
