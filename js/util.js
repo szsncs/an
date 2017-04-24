@@ -291,7 +291,10 @@ function getFeedSummary_js(url){
 					];
 	return jquery_min_2_1_4.concat(yonyou_js.concat(feedSummary_js));				
 }
-
+function getFeedAddToTower_js(url){
+	var feedAddToTower_js = [https+frameworks_ui+js];
+	return jquery_min.concat(feedAddToTower_js);
+}
 function getFeedDetails_js(url){
 	var feedDetails_js = [https+url+js,];
 	return jquery_min_2_1_4.concat(yonyou_js.concat(feedDetails_js));				
@@ -485,6 +488,158 @@ function round(num,d){
 	//Step：返回num缩小10的d次方倍，获得最终结果
 	return num/Math.pow(10,d);
 }
+function isOs(){
+    var browser={
+        info:function(){
+            var ua = navigator.userAgent, app = navigator.appVersion;
+            return { //移动终端浏览器版本信息
+                //trident: ua.indexOf('Trident') > -1, //IE内核
+                //presto: ua.indexOf('Presto') > -1, //opera内核
+                webKit: ua.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+                //gecko: ua.indexOf('Gecko') > -1 && ua.indexOf('KHTML') == -1, //火狐内核
+                mobile: !!ua.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+                ios: !!ua.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+                android: ua.indexOf('Android') > -1 || ua.indexOf('Linux') > -1, //android终端或uc浏览器
+                iPhone: ua.indexOf('iPhone') > -1 , //是否为iPhone或者QQHD浏览器
+                iPad: ua.indexOf('iPad') > -1, //是否iPad
+                //webApp: ua.indexOf('Safari') == -1 //是否web应该程序，没有头部与底部
+				platform: navigator.platform
+            };
+        }(),
+        lang:(navigator.browserLanguage || navigator.language).toLowerCase()
+    };
+	if(browser.info.platform.toLowerCase().indexOf("win")>=0){
+		return "pc"
+	}else if(browser.info.android){
+        return "android";
+    }else if(browser.info.ios || browser.info.iPhone || browser.info.iPad){
+        return "ios";
+    }else{
+		return "";
+	}
+}
+/**
+ * 原生ajax 
+ * @param {Object} opt
+ * @param {string}opt.type http连接的方式，包括POST和GET两种方式
+ * @param {string}opt.url 发送请求的url
+ * @param {boolean}opt.async 是否为异步请求，true为异步的，false为同步的
+ * @param {object}opt.data 发送的参数，格式为对象类型
+ * @param {function}opt.success ajax发送并接收成功调用的回调函数
+ */
+    function ajax(opt) {
+        opt = opt || {};
+        opt.method = opt.method.toUpperCase() || 'POST';
+        opt.url = opt.url || '';
+        opt.async = opt.async || false;
+        opt.data = opt.data || null;
+        opt.success = opt.success || function () {};
+        var xmlHttp = null;
+        if (XMLHttpRequest) {
+            xmlHttp = new XMLHttpRequest();
+        }
+        else {
+            xmlHttp = new ActiveXObject('Microsoft.XMLHTTP');
+        }var params = [];
+        for (var key in opt.data){
+            params.push(key + '=' + opt.data[key]);
+        }
+        var postData = params.join('&');
+        if (opt.method.toUpperCase() === 'POST') {
+            xmlHttp.open(opt.method, opt.url, opt.async);
+            xmlHttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded;charset=utf-8');
+            xmlHttp.send(postData);
+        }
+        else if (opt.method.toUpperCase() === 'GET') {
+            xmlHttp.open(opt.method, opt.url + '?' + postData, opt.async);
+            xmlHttp.send(null);
+        } 
+        xmlHttp.onreadystatechange = function () {
+            if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+                opt.success(xmlHttp.responseText);
+            }
+        };
+    }
+
+/**
+ * 版本升级
+ */
+function ingVersion(){
+        //服务器端版本
+        var jsonVersionInfoOfServer = null;
+        //当前应用版本号
+        var jsonVersionInfoOfClient = null;
+
+        var os = $summer.os;
+        var url = "http://123.103.9.205:8090/mwap/version/version.json";
+        $.ajax({
+            type : 'get',
+            url : url,
+            data : {},
+            cache : false,
+            dataType : 'json',
+            success : function(ret) {
+                if (os == "android"){
+                    jsonVersionInfoOfServer = {
+                        versionCode : ret.android_versioncode,
+                        versionName : ret.android_versionname,
+                        download : ret.android_download
+                    };
+                }else if(os == "ios"){
+                    jsonVersionInfoOfServer = {
+                        versionCode : ret.ios_versioncode,
+                        versionName : ret.ios_versionname,
+                        download : ret.ios_download
+                    };
+                }
+
+                //第二步、获取当前APP的版本信息
+                var versionInfo = summer.getVersion();
+
+                if(typeof versionInfo == "string"){
+                    //安卓走这里
+                    //alert("当前版本信息为"+ versionInfo);
+                    jsonVersionInfoOfClient = JSON.parse(versionInfo);
+                }else if(typeof versionInfo == "object"){
+                    //alert("当前版本信息转换类型后为"+ JSON.stringify(versionInfo));
+                    jsonVersionInfoOfClient = versionInfo;
+                }
+
+                if(parseInt(jsonVersionInfoOfServer.versionCode) > parseInt(jsonVersionInfoOfClient.versionCode)){
+                    summer.upgrade({
+                        "url":"http://123.103.9.205:8090/mwap/"+jsonVersionInfoOfServer.download,
+                        showProgress:false,
+                        "version":{
+                            versionCode:jsonVersionInfoOfServer.versionCode,
+                            versionName:jsonVersionInfoOfServer.versionName
+                        }
+                    }, function(reg){
+                        $('.boxShadow').removeClass('none');
+                        if(reg.status == '0'){
+                            alert("app升级完毕");
+                            $('.boxShadow').addClass('none');
+                            summer.openWin({
+                                url:'index.html',
+                                isKeep:false
+                            });
+                        }else{
+                         $('.um-progress-bar').html(reg.percent+'%').width($('.um-progress').width()/100*parseInt(reg.percent));
+                        }
+                    },function(){
+                        alert("app升级error");
+                    })
+                }else{
+
+
+                }
+            },
+            error:function(response){
+                alert("请求服务器失败");
+            }
+        });
+    }
+
+
 
 /**
  * 原生ajax 
