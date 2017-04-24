@@ -292,7 +292,8 @@ function getFeedSummary_js(url){
 	return jquery_min_2_1_4.concat(yonyou_js.concat(feedSummary_js));				
 }
 function getFeedAddToTower_js(url){
-	var feedAddToTower_js = [https+frameworks_ui+js];
+	var feedAddToTower_js = [https+frameworks_ui+js,
+							https+url+js];
 	return jquery_min.concat(feedAddToTower_js);
 }
 function getFeedDetails_js(url){
