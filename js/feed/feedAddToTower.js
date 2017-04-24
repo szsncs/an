@@ -83,7 +83,7 @@ var feedAddToTower = {
 					+'数量 <input type="number"/> 吨'
 					+'</div>'
 					+'</li>'
-					+'<li class="plusAndMinus">'
+					+'<li>'
 		           		 +'<div>'
 		           		 +'<a href="#" class="ti-plus"></a>'
 		            		+'</div>'
