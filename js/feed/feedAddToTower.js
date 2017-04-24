@@ -13,7 +13,7 @@ var feedAddToTower = {
 	    callAction(feedAddToTower.viewid,"addFeedInfoInit",json,"callBack");
 	},
 	bindEvent:function(){
-		$(".um-back").click(function(){
+		$(".um-back").unbind().on('click',function(){
 			summer.closeWin();
 		});
 		$(".allTower li").hide();
