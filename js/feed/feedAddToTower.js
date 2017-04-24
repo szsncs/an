@@ -18,7 +18,7 @@ var feedAddToTower = {
 		});
 		$(".allTower li").hide();
 		$(".btn").on('click',function(){
-			$(this).parent().parent().find("ul li").stop().slideToggle(400);
+			$(this).parent().find("ul li").stop().slideToggle(400);
 		});
 		$(".ti-plus").on('click',function(){
 			// to do 行数限制
