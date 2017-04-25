@@ -62,4 +62,5 @@ input[type="radio"]:checked ~ .um-icon-checkbox:before, input[type="checkbox"]:c
 }
 .bo{
 	border:#0000FF solid 0.5px;
+	border-radius: 5px;
 }
