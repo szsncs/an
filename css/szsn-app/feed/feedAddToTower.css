@@ -65,3 +65,6 @@ input[type="radio"]:checked ~ .um-icon-checkbox:before, input[type="checkbox"]:c
 	margin-top: 5px;
 	border-bottom:solid 0.2px #ccc;
 }
+.um-list .um-list{
+	padding-left:15px;
+}
