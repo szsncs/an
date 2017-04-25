@@ -35,7 +35,9 @@ var feedAddToTower = {
 		$("#btn-save").on('click',feedAddToTower.confirmAddFeed);
 	},
 	confirmAddFeed:function(){
-		alert(111);
+		$("input[type=checkbox]:checked").each(function(){
+			console.log($(this).parent().parent().parent().parent());
+		});
 	},
 	initsiloSelect:function(){
 		var logininfo = $cache.read("logininfo");
