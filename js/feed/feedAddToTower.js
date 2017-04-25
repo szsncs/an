@@ -46,9 +46,12 @@ var feedAddToTower = {
 			var allnuminput = div_bo.find("input[type=number]");
 			allnuminput.each(function(){
 				readyToTower+=this.value;
+				if(this.value==0){
+					return confirmAddFeed();
+				}
 				if(notInTower<readyToTower){
 					UM.alert("对不起！"+carno+"车,打料数量超过未打料数量！");
-					return;
+					return confirmAddFeed();
 				}
 			});
 			div_bo.find(".siloSelect option:selected").each(function(){
@@ -132,7 +135,7 @@ var feedAddToTower = {
 					+'<select class ="siloSelect"></select>'
 					+'</div>'
 					+'<div class="num">'
-					+'数量 <input type="number"/> 吨'
+					+'数量 <input type="number" value='0'/> 吨'
 					+'</div>'
 					+'</li>'
 					+'<li>'
