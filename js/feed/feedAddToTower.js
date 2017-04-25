@@ -59,11 +59,11 @@ var feedAddToTower = {
 				silos.push(obj);
 			});
 			if(silos.length>0){
-				var json =[];
-				for(var i=0;i<silos.length;i++){
+				var json={};
+				for(var i=1;i<silos.length;i++){
 					var pk = silos[i].pk_silo;
-					if(!json.pk){
-						json.push(pk:pk);
+					if(!json[pk]){
+						json[pk]=pk;
 					}
 				}
 				if(silos.length!=json.length){
