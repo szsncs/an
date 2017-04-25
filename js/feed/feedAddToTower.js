@@ -61,13 +61,15 @@ var feedAddToTower = {
 			});
 			if(silos.length>0){
 				var json={};
+				var count=0;
 				for(var i=0;i<silos.length;i++){
 					var pk = silos[i].pk_silo;
 					if(!json[pk]){
 						json[pk]=pk;
+						count++;
 					}
 				}
-				if(silos.length!=json.length){
+				if(silos.length!=count){
 					UM.alert("对不起！"+carno+"车,不允许出现相同料塔！");
 					flag=false;
 				}
