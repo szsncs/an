@@ -11,10 +11,10 @@
 .siloSelect{
 	height: 30px;
 	width:150px;
-	border-radius: 8px; 
+	border-radius: 8px;
 	border: solid 1px #ccc;
 }
-select,input[type=number]{
+select{
 	font-size: 20px;
 }
 input[type="number"]{
@@ -22,9 +22,7 @@ input[type="number"]{
 	height:30px;
 	border-radius: 8px;
 	border: solid 1px #ccc;
-}
-.allTower{
-	border-bottom:1px solid #000000;
+	font-size:15px;
 }
 .allTower li{
 	margin: 10px;
@@ -35,7 +33,7 @@ input[type="number"]{
 	border-bottom:0px #FFFFFF;
 }
 .ti-plus,.ti-minus{
-	background-color: #2DBB69;color: #fff;font-size: 20px;padding: 5px;border-radius: 5px;margin: 5px;
+	background-color: #2DBB69;color: #fff;font-size: 30px;padding: 5px;border-radius: 5px;margin: 10px;
 }
 .ti-minus{
 	margin-right: 40px;
@@ -62,4 +60,6 @@ input[type="radio"]:checked ~ .um-icon-checkbox:before, input[type="checkbox"]:c
 .btn-sm{
 	font-size:22px;
 }
- 
+.bo{
+	border:#0000FF solid 0.5px;
+}
