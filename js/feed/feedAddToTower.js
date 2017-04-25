@@ -36,7 +36,6 @@ var feedAddToTower = {
 	},
 	confirmAddFeed:function(){
 		var array = [];
-		var flag = true;
 		$("input[type=checkbox]:checked").each(function(){
 			var pk_inbill = $(this).attr("pk_inbill");
 			var div_bo = $(this).parent().parent().parent().parent();
@@ -71,7 +70,7 @@ var feedAddToTower = {
 				}
 				if(silos.length!=count){
 					UM.alert("对不起！"+carno+"车,不允许出现相同料塔！");
-					flag=false;
+					return confirmAddFeed();
 				}
 				var obj = {
 					pk_inbill:pk_inbill,
@@ -80,7 +79,7 @@ var feedAddToTower = {
 				array.push(obj);
 			}
 		});
-		if(array.length>0&&flag){
+		if(array.length>0){
 			var data = $cache.read("logininfo");
 			var lonininfo = JSON.parse(data);
 			var json={
