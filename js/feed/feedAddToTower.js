@@ -47,6 +47,7 @@ var feedAddToTower = {
 			allnuminput.each(function(){
 				readyToTower+=this.value;
 				if(this.value==0){
+					UM.alert("对不起！"+carno+"车,不允许填0或者空值！");
 					return confirmAddFeed();
 				}
 				if(notInTower<readyToTower){
