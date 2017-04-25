@@ -45,7 +45,7 @@ var feedAddToTower = {
 			var readyToTower = 0.0;//准备打料总量
 			var allnuminput = div_bo.find("input[type=number]");
 			allnuminput.each(function(){
-				readyToTower+=this.value;
+				readyToTower=eval(readyToTower+this.value);
 				if(this.value==0){
 					UM.alert("对不起！"+carno+"车,不允许填0或者空值！");
 					return confirmAddFeed();
