@@ -135,7 +135,7 @@ var feedAddToTower = {
 					+'<select class ="siloSelect"></select>'
 					+'</div>'
 					+'<div class="num">'
-					+'数量 <input type="number" value='0'/> 吨'
+					+'数量 <input type="number" value="0"/> 吨'
 					+'</div>'
 					+'</li>'
 					+'<li>'
