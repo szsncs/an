@@ -111,7 +111,7 @@ var feedAddToTower = {
 		if(inbill.length>0){
 			for(var i=0;i<inbill.length;i++){
 				html+='<div>'
-					+='<li class="um-list-item">'
+					+'<li class="um-list-item">'
 					+'<a href="javascript:;" class="btn">'
 					+'<label class="um-check-inline">'
                     +'<input name="um-checkbox-inline" type="checkbox" pk_inbill="'+inbill[i].pk_inbill+'">'
