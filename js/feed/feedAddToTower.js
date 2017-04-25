@@ -70,12 +70,12 @@ var feedAddToTower = {
 					UM.alert("对不起！"+carno+"车,不允许出现相同料塔！");
 					return;
 				}
+				var obj = {
+					pk_inbill:pk_inbill,
+					silos:silos
+				}
+				array.push(obj);
 			}
-			var obj = {
-				pk_inbill:pk_inbill,
-				silos:silos
-			}
-			array.push(obj);
 		});
 		if(array.length>0){
 			var data = $cache.read("logininfo");
