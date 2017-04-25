@@ -14,7 +14,7 @@
 	border-radius: 8px; 
 	border: solid 1px #ccc;
 }
-select{
+select,input[type=number]{
 	font-size: 20px;
 }
 input[type="number"]{
@@ -22,7 +22,6 @@ input[type="number"]{
 	height:30px;
 	border-radius: 8px;
 	border: solid 1px #ccc;
-	font-size: 20px;
 }
 .allTower{
 	border-bottom:1px solid #000000;
