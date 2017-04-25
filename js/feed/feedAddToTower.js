@@ -45,7 +45,7 @@ var feedAddToTower = {
 			var readyToTower = 0.0;//准备打料总量
 			var allnuminput = div_bo.find("input[type=number]");
 			allnuminput.each(function(){
-				readyToTower=eval(readyToTower+this.value);
+				readyToTower=eval(readyToTower+parseFloat(this.value));
 				if(this.value==0){
 					UM.alert("对不起！"+carno+"车,不允许填0或者空值！");
 					return confirmAddFeed();
@@ -96,7 +96,7 @@ var feedAddToTower = {
 			//确认打料 请求
 	       callAction(feedAddToTower.viewid,"confirmAddFeedToTower",json,"confirmcallBack");
 		}else{
-			alert("请先选择料塔！");
+			UM.alert("请先选择料塔！");
 		}
 	},
 	initsiloSelect:function(){
