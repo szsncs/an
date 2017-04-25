@@ -60,7 +60,7 @@ var feedAddToTower = {
 			});
 			if(silos.length>0){
 				var json =[];
-				for(int i=0;i<silos.length){
+				for(var i=0;i<silos.length;i++){
 					var pk = silos[i].pk_silo;
 					if(!json.pk){
 						json.push(pk);
