@@ -48,17 +48,17 @@ var feedAddToTower = {
 				readyToTower=eval(readyToTower+parseFloat(this.value));
 				if(this.value==0){
 					UM.alert("对不起！"+carno+"车,不允许填0或者空值！");
-					return;
+					return confirmAddFeed();
 				}
 				if(notInTower<readyToTower){
 					UM.alert("对不起！"+carno+"车,打料数量超过未打料数量！");
-					return;
+					return confirmAddFeed();
 				}
 			});
 			div_bo.find(".siloSelect option:selected").each(function(){
 				var obj = {
 					pk_silo:this.getAttribute("pk_silo"),
-					num:this.value
+					num:$(this).parent().parent().parent().find(".num input").val()
 				};
 				silos.push(obj);
 			});
