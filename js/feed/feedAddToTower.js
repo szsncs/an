@@ -110,7 +110,7 @@ var feedAddToTower = {
 		var inbill = data.billinfo.inbill;
 		if(inbill.length>0){
 			for(var i=0;i<inbill.length;i++){
-				html+='<div>'
+				html+='<div class="bo">'
 					+'<li class="um-list-item">'
 					+'<a href="javascript:;" class="btn">'
 					+'<label class="um-check-inline">'
