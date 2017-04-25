@@ -32,6 +32,10 @@ var feedAddToTower = {
 			var lis = $(this).parent().parent().parent().find("li");
 			lis.length>2?lis[lis.length-2].remove():UM.alert("对不起！请至少选一个料塔！");
 		});
+		$(".btn-save").unbind().on('click',confirmAddFeed);
+	},
+	confirmAddFeed:function(){
+		alert(111);
 	},
 	initsiloSelect:function(){
 		var logininfo = $cache.read("logininfo");
