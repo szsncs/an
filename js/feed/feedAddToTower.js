@@ -38,6 +38,8 @@ var feedAddToTower = {
 			// to do 行数限制
 			var lis = $(this).parent().parent().parent().find("li");
 			lis.length>2?lis[lis.length-2].remove():UM.alert("对不起！请至少选一个料塔！");
+			$($(this).parent().parent().parent().children("li").find("input[type=number]")[0]).blur();
+			$(selector).blur();
 		});
 		$("input[type='number']").on('blur', feedAddToTower.calNum);
 		$("#btn-save").unbind().on('click',feedAddToTower.confirmAddFeed);
