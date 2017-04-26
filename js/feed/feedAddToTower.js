@@ -39,7 +39,7 @@ var feedAddToTower = {
 			lis.length>2?lis[lis.length-2].remove():UM.alert("对不起！请至少选一个料塔！");
 		});
 		$("input[type='number']").on('blur', function() {
-			var oldnum = parseFloat($(this).parent().parent().parent().parent().children("li").find("#readyToTower").text());
+			var oldnum = $(this).parent().parent().parent().parent().children("li").find("#readyToTower");
 			var readyToTower = 0.0;
 			input = $(this).parent().parent().children(".tower").find("input[type=number]");
 			for(var i=0;i<input.length;i++){
