@@ -31,12 +31,10 @@ var feedConfirmation = {
 			if($(this).prop('checked')){
 				var pk_inbill= $(this).attr("pk_inbill");
 				var i = $(this).attr("turns");
-			    if( pk_silo && pk_silo.length>=0){
-			    	var obj={
-						pk_inbill:pk_inbill
-					}
-					array.push(obj);
-			    }
+		    	var obj={
+					pk_inbill:pk_inbill
+				}
+				array.push(obj);
 		    }
 			
 		});
