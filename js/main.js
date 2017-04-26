@@ -173,7 +173,10 @@ var main = {
 				"url" : 'index.html',
 			});
 		}); 
-	
+		
+		$("#ing_version").click(function(){
+			ingVersion();//版本升级
+		});
 
 	},
 	init:function(){
@@ -279,7 +282,7 @@ var main = {
 			var str =$(this).find('a').attr("dataurl");
 			var funcode=$(this).find('a').attr("funcode");
 			var url = 'html'+str;
-			
+			summer.showProgress({"title" : "加载中..."});
 			summer.openWin({
 	            "id" : str,
 	            "url" : url,
