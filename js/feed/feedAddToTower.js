@@ -115,10 +115,10 @@ var feedAddToTower = {
                 "text" : "确认后打料数量将无法修改,确认吗？",
                 "btnText" : ["确认","取消"],
                 "overlay" : true,
-                "ok" :function(){
+                "cancle" :function(){
                     callAction(feedAddToTower.viewid,"confirmAddFeedToTower",json,"confirmcallBack");
                 },
-                "cancle" :function(){
+                "ok" :function(){
                      return;
                 }
             });
