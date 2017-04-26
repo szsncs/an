@@ -103,10 +103,19 @@ var feedAddToTower = {
 			summer.showProgress({
 	            "title" : "加载中..."
 	        });
-	        var flag = UM.confirm("确认后将无法修改数量，确定提交吗？");
 			//确认打料 请求
-	       	if(flag)
-	       		callAction(feedAddToTower.viewid,"confirmAddFeedToTower",json,"confirmcallBack");
+			UM.confirm({
+                "title" : "打料确认",
+                "text" : "确认后打料数量将无法修改,确认吗？",
+                "btnText" : ["确认","取消"],
+                "overlay" : true,
+                "cancle" :function(){
+                     return;
+                },
+                "ok" :function(){
+                    callAction(feedAddToTower.viewid,"confirmAddFeedToTower",json,"confirmcallBack");
+                }
+            });
 		}else{
 			UM.alert("请先选择车辆！");
 		}
