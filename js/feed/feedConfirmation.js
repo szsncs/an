@@ -31,14 +31,9 @@ var feedConfirmation = {
 			if($(this).prop('checked')){
 				var pk_inbill= $(this).attr("pk_inbill");
 				var i = $(this).attr("turns");
-				var str = "#select"+i+" option:selected";
-				var pk_silo = $(str).attr("pk_silo");
-			    var silo_name=$("#select"+i).val();
 			    if( pk_silo && pk_silo.length>=0){
 			    	var obj={
-						pk_inbill:pk_inbill,
-						pk_silo:pk_silo,
-						silo_name:silo_name
+						pk_inbill:pk_inbill
 					}
 					array.push(obj);
 			    }
@@ -77,9 +72,6 @@ var feedConfirmation = {
 					 + '				<div class="feed">料号：<span>'+inbill[i].feed_type_name+'</span></div>'
 					 + '				<div class="zhong">数量：<span id="'+inbill[i].silo_name+'">'+inbill[i].num+'吨</span></div>'
 					 + '			</div>'
-					 + '			<div class="um-list-item-right">'
-					 + '				<select id="select'+i+'" class ="siloSelect" style="height:25px;"></select>'
-					 + '			</div>'
 					 + '		</div>'
 					 + '	</div>'
 					 + '</li>';
@@ -96,25 +88,7 @@ var feedConfirmation = {
 					+'		</div> </a>'
 		}
 		$("#inbillListul").html(html);
-		feedConfirmation.initsiloSelect();
-		for(var i=0;i<inbill.length;i++){
-			if(inbill[i].silo_name){
-				$("#select"+i).val(inbill[i].silo_name);
-			}
-		}
-					
-	},
-	initsiloSelect:function(){
-		var logininfo = $cache.read("logininfo");
-		var json = JSON.parse(logininfo);
-		var siloinfoList = json.siloinfo;
-		$(".siloSelect").html("");
-		var optionhtml= '<option>-请选择料塔-</option>';
-		for(var i=0;i<siloinfoList.length;i++){
-			optionhtml+='<option pk_silo="'+siloinfoList[i].pk_silo+'">'+siloinfoList[i].silo_name+'</option>'
-		}
-		$(".siloSelect").append(optionhtml);
-	},
+	}
 };
 /**
  * 接口回调模块 
