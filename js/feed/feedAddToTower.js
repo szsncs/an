@@ -22,10 +22,13 @@ var feedAddToTower = {
 		});
 		$(".ti-plus").unbind().on('click',function(){
 			// to do 行数限制
+			var logininfo = $cache.read("logininfo");
+			var json = JSON.parse(logininfo);
+			var siloinfoList = json.siloinfo;
 			var li = "<li class='towers'>";
 			li+=$($(".towers")[0]).html();
 			li+="</li>";
-			$(this).parent().parent().before($(li));
+			$(this).parent().parent().find(".towers tower").length<siloinfoList.length?$(this).parent().parent().before($(li)):UM.alert("没有更多料塔！");
 		});
 		$(".ti-minus").unbind().on('click',function(){
 			// to do 行数限制
