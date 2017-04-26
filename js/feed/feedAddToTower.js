@@ -116,14 +116,14 @@ var feedAddToTower = {
 			UM.confirm({
                 "title" : "打料确认",
                 "text" : "确认后打料数量将无法修改,确认吗？",
-                "btnText" : ["确认","取消"],
+                "btnText" : ["取消","确认"],
                 "overlay" : true,
                 "cancle" :function(){
-			        summer.showProgress({"title" : "加载中..."});
-                    callAction(feedAddToTower.viewid,"confirmAddFeedToTower",json,"confirmcallBack");
+			        return;
                 },
                 "ok" :function(){
-                     return;
+                    summer.showProgress({"title" : "加载中..."});
+                    callAction(feedAddToTower.viewid,"confirmAddFeedToTower",json,"confirmcallBack");
                 }
             });
 		}else{
