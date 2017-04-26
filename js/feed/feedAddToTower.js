@@ -56,8 +56,12 @@ var feedAddToTower = {
 				}
 			});
 			div_bo.children("ul").find(".siloSelect option:selected").each(function(){
+				if(!$(this).attr("pk_silo")){
+					UM.alert("对不起！"+carno+"车,请选择料塔！");
+					return confirmAddFeed();
+				}
 				var obj = {
-					pk_silo:this.getAttribute("pk_silo"),
+					pk_silo:$(this).attr("pk_silo"),
 					num:$(this).parent().parent().parent().find(".num input").val()
 				};
 				silos.push(obj);
