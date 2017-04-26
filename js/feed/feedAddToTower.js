@@ -145,6 +145,7 @@ var feedAddToTower = {
 		var html = "";
 		var inbill = data.billinfo.inbill;
 		if(inbill.length>0){
+		for(var k=0;k<10;k++){
 			for(var i=0;i<inbill.length;i++){
 				html+='<div class="bo">'
 					+'<li class="um-list-item">'
@@ -155,7 +156,7 @@ var feedAddToTower = {
                     +'</label>'
 					+'<div class="um-media-body">'
 					+'<h4>车牌号：<span id="carno">'+inbill[i].carno+'</span></h4>'
-					+'<p>'
+					+'<p class="notInTower">'
 					+'未打料数量：<span id="notInTower">'+inbill[i].notInTower+'</span>吨'
 					+'</p>'
 					+'<p class="readyToTower">'
@@ -182,6 +183,7 @@ var feedAddToTower = {
 					+'</li>'
 					+'</ul>'
 					+'<div>';
+			}
 			}
 		}else{//无列表信息弹出提示并绘制空列表
 			html+='<a href="#"  class="um-list-item list_item" >'
