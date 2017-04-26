@@ -25,10 +25,13 @@ var feedAddToTower = {
 			var logininfo = $cache.read("logininfo");
 			var json = JSON.parse(logininfo);
 			var siloinfoList = json.siloinfo;
+			var size = $(this).parent().parent().parent().find(".tower").length;
 			var li = "<li class='towers'>";
 			li+=$($(".towers")[0]).html();
 			li+="</li>";
-			$(this).parent().parent().parent().find(".tower").length<siloinfoList.length?$(this).parent().parent().before($(li)):UM.alert("没有更多料塔！");
+			$li=$(li);
+			$($li.find(".siloSelect")[0].options[size-1]).attr("selected","selected");
+			size<siloinfoList.length?$(this).parent().parent().before($li):UM.alert("没有更多料塔！");
 		});
 		$(".ti-minus").unbind().on('click',function(){
 			// to do 行数限制
@@ -103,7 +106,7 @@ var feedAddToTower = {
 			//确认打料 请求
 	       callAction(feedAddToTower.viewid,"confirmAddFeedToTower",json,"confirmcallBack");
 		}else{
-			UM.alert("请先选择料塔！");
+			UM.alert("请先选择车辆！");
 		}
 	},
 	initsiloSelect:function(){
@@ -111,7 +114,7 @@ var feedAddToTower = {
 		var json = JSON.parse(logininfo);
 		var siloinfoList = json.siloinfo;
 		$(".siloSelect").html("");
-		var optionhtml= '<option>-请选择料塔-</option>';
+		var optionhtml= '';
 		for(var i=0;i<siloinfoList.length;i++){
 			optionhtml+='<option pk_silo="'+siloinfoList[i].pk_silo+'">'+siloinfoList[i].silo_name+'</option>'
 		}
