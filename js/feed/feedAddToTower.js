@@ -32,22 +32,24 @@ var feedAddToTower = {
 			$li=$(li);
 			$($li.find(".siloSelect")[0].options[size]).attr("selected","selected");
 			size<siloinfoList.length?$(this).parent().parent().before($li):UM.alert("没有更多料塔！");
+			$("input[type='number']").on('blur', feedAddToTower.calNum);
 		});
 		$(".ti-minus").unbind().on('click',function(){
 			// to do 行数限制
 			var lis = $(this).parent().parent().parent().find("li");
 			lis.length>2?lis[lis.length-2].remove():UM.alert("对不起！请至少选一个料塔！");
 		});
-		$("input[type='number']").on('blur', function() {
-			var oldnum = $(this).parent().parent().parent().parent().children("li").find("#readyToTower");
-			var readyToTower = 0.0;
-			input = $(this).parent().parent().parent().children(".towers").find("input[type=number]");
-			for(var i=0;i<input.length;i++){
-				readyToTower = eval(readyToTower+parseFloat(input[i].value));
-			}
-			oldnum.text(readyToTower);
-		});
+		$("input[type='number']").on('blur', feedAddToTower.calNum);
 		$("#btn-save").unbind().on('click',feedAddToTower.confirmAddFeed);
+	},
+	calNum:function(){
+		var oldnum = $(this).parent().parent().parent().parent().children("li").find("#readyToTower");
+		var readyToTower = 0.0;
+		input = $(this).parent().parent().parent().children(".towers").find("input[type=number]");
+		for(var i=0;i<input.length;i++){
+			readyToTower = eval(readyToTower+parseFloat(input[i].value));
+		}
+		oldnum.text(readyToTower);
 	},
 	confirmAddFeed:function(){
 		var array = [];
