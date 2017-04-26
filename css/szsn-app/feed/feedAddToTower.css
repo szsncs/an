@@ -70,6 +70,6 @@ input[type="radio"]:checked ~ .um-icon-checkbox:before, input[type="checkbox"]:c
     position: absolute;
     right: 10px;
 }
-.btn{
+.um-list-item>.btn{
 	height:74px;
 }
