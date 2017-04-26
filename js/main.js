@@ -1,233 +1,391 @@
-var feedAddToTower = {
-	data:{},
-	viewid : "com.sunnercn.feed.FeedAddToTowerController",
-	init:function(){
-		var data = $cache.read("logininfo");
-		var logininfo = JSON.parse(data);
-		var json = {
-			logininfo:logininfo
-		}
-		summer.showProgress({
-	           // "title" : "加载中..."
-	    });
-	    callAction(feedAddToTower.viewid,"addFeedInfoInit",json,"callBack");
-	},
-	bindEvent:function(){
-		$(".um-back").unbind().on('click',function(){
-			summer.closeWin();
-		});
-		$(".allTower li").hide();
-		$(".btn").unbind().on('click',function(){
-			$(this).parent().next().find("li").stop().slideToggle(400);
-		});
-		$(".ti-plus").unbind().on('click',function(){
-			// to do 行数限制
-			var logininfo = $cache.read("logininfo");
-			var json = JSON.parse(logininfo);
-			var siloinfoList = json.siloinfo;
-			var size = $(this).parent().parent().parent().find(".tower").length;
-			var li = "<li class='towers'>";
-			li+=$($(".towers")[0]).html();
-			li+="</li>";
-			$li=$(li);
-			$($li.find(".siloSelect")[0].options[size]).attr("selected","selected");
-			size<siloinfoList.length?$(this).parent().parent().before($li):UM.alert("没有更多料塔！");
-			$("input[type='number']").on('blur', feedAddToTower.calNum);
-		});
-		$(".ti-minus").unbind().on('click',function(){
-			// to do 行数限制
-			var lis = $(this).parent().parent().parent().find("li");
-			lis.length>2?lis[lis.length-2].remove():UM.alert("对不起！请至少选一个料塔！");
-			$($(this).parent().parent().parent().children("li").find("input[type=number]")[0]).blur();
-		});
-		$("input[type='number']").on('blur', feedAddToTower.calNum);
-		$("#btn-save").unbind().on('click',feedAddToTower.confirmAddFeed);
-		$(".sk_refresh").unbind().on('click',feedAddToTower.init);
-	},
-	calNum:function(){
-		var oldnum = $(this).parent().parent().parent().parent().children("li").find("#readyToTower");
-		var readyToTower = 0.0;
-		input = $(this).parent().parent().parent().children(".towers").find("input[type=number]");
-		for(var i=0;i<input.length;i++){
-			readyToTower = eval(readyToTower+parseFloat(input[i].value?input[i].value:0));
-		}
-		oldnum.text(readyToTower);
-	},
-	confirmAddFeed:function(){
-		var array = [];
-		$("input[type=checkbox]:checked").each(function(){
-			var pk_inbill = $(this).attr("pk_inbill");
-			var div_bo = $(this).parent().parent().parent().parent();
-			var silos = [];
-			var carno = div_bo.find("#carno").text();//车牌号
-			var notInTower = parseFloat(div_bo.find("#notInTower").text().trim());//未打料量
-			var readyToTower = parseFloat(div_bo.children("li").find("#readyToTower").text());//准备打料总量
-			var allnuminput = div_bo.children("ul").find("input[type=number]");
-			allnuminput.each(function(){
-				if(this.value==0){
-					UM.alert("对不起！"+carno+"车,不允许填0或者空值！");
-					return confirmAddFeed();
-				}
-			});
-			if(notInTower<readyToTower){
-				UM.alert("对不起！"+carno+"车,打料数量超过未打料数量！");
-				return confirmAddFeed();
-			}
-			div_bo.children("ul").find(".siloSelect option:selected").each(function(){
-				if(!$(this).attr("pk_silo")){
-					UM.alert("对不起！"+carno+"车,请选择料塔！");
-					return confirmAddFeed();
-				}
-				var obj = {
-					pk_silo:$(this).attr("pk_silo"),
-					num:$(this).parent().parent().parent().find(".num input").val()
-				};
-				silos.push(obj);
-			});
-			if(silos.length>0){
-				var json={};
-				var count=0;
-				for(var i=0;i<silos.length;i++){
-					var pk = silos[i].pk_silo;
-					if(!json[pk]){
-						json[pk]=pk;
-						count++;
-					}
-				}
-				if(silos.length!=count){
-					UM.alert("对不起！"+carno+"车,不允许出现相同料塔！");
-					return confirmAddFeed();
-				}
-				var obj = {
-					pk_inbill:pk_inbill,
-					silos:silos
-				}
-				array.push(obj);
-			}
-		});
-		if(array.length>0){
-			var data = $cache.read("logininfo");
-			var lonininfo = JSON.parse(data);
-			var json={
-				billinfo:array,
-				logininfo:lonininfo
-			}
-			//确认打料 请求
-			UM.confirm({
-                "title" : "打料确认",
-                "text" : "确认后打料数量将无法修改,确认吗？",
-                "btnText" : ["取消","确认"],
-                "overlay" : true,
-                "cancle" :function(){
-			        return;
-                },
-                "ok" :function(){
-                    summer.showProgress({"title" : "加载中..."});
-                    callAction(feedAddToTower.viewid,"confirmAddFeedToTower",json,"confirmcallBack");
-                }
-            });
-		}else{
-			UM.alert("请先选择车辆！");
-		}
-	},
-	initsiloSelect:function(){
-		var logininfo = $cache.read("logininfo");
-		var json = JSON.parse(logininfo);
-		var siloinfoList = json.siloinfo;
-		$(".siloSelect").html("");
-		var optionhtml= '';
-		for(var i=0;i<siloinfoList.length;i++){
-			optionhtml+='<option pk_silo="'+siloinfoList[i].pk_silo+'">'+siloinfoList[i].silo_name+'</option>'
-		}
-		$(".siloSelect").append(optionhtml);
-	},
-	loadPage:function(data){
-		$("#inbillListul").html("");
-		var html = "";
-		var inbill = data.billinfo.inbill;
-		if(inbill.length>0){
-			for(var i=0;i<inbill.length;i++){
-				html+='<div class="bo">'
-					+'<li class="um-list-item">'
-					+'<a href="javascript:;" class="btn">'
-					+'<label class="um-check-inline">'
-                    +'<input name="um-checkbox-inline" type="checkbox" pk_inbill="'+inbill[i].pk_inbill+'">'
-                   	+'<span class="um-icon-checkbox um-css3-vc"></span>'
-                    +'</label>'
-					+'<div class="um-media-body">'
-					+'<h4>车牌号：<span id="carno">'+inbill[i].carno+'</span></h4>'
-					+'<p class="notInTower">'
-					+'未打料数量：<span id="notInTower">'+inbill[i].notInTower+'</span>吨'
-					+'</p>'
-					+'<p class="readyToTower">'
-					+'准备打料数量：<span id="readyToTower">'+inbill[i].notInTower+'</span>吨'
-					+'</p>'
-					+'</div> </a>'
-					+'</li>'
-					+'<ul class="um-list allTower">'
-					+'<li class="towers">'
-					+'<div class="tower">'
-					+'<select class ="siloSelect"></select>'
-					+'</div>'
-					+'<div class="num">'
-					+'数量 <input type="number"/> 吨'
-					+'</div>'
-					+'</li>'
-					+'<li>'
-		           	+'<div>'
-		           	+'<a href="#" class="ti-plus"></a>'
-		            +'</div>'
-					+'<div>'
-					+'<a href="#" class="ti-minus"></a>'
-					+'</div>'
-					+'</li>'
-					+'</ul>'
-					+'<div>';
-			}
-		}else{//无列表信息弹出提示并绘制空列表
-			html+='<a href="#"  class="um-list-item list_item" >'
-					+'		<div class="um-list-item-media">'
-					+'		</div>'
-					+'		<div class="um-list-item-inner">'
-					+'			<div class="um-list-item-body">'
-					+'				<h4 class="um-media-heading f18" style="color:red">当前场内所有饲料已经打入料塔</h4>'
-					+'			</div>'
-					+'		</div> </a>'
-		}
-		$("#inbillListul").html(html);
-		feedAddToTower.initsiloSelect();
-		feedAddToTower.bindEvent();
-	}
-}
-/**
- * 接口回调模块 
- */
-function callBack(args){
-	summer.hideProgress();
-	if(args.status == "0"){
-		feedAddToTower.loadPage(args.data);
-	}else if(args.status == "1"){
-		UM.alert("初始化失败:"+args.message);
-		summer.closeWin();
-	} else {
-		UM.alert(args.message);	
-		summer.closeWin();
-	}		
-}
-function confirmcallBack(args){
-	summer.hideProgress();
-	if(args.status == "0"){
-		feedAddToTower.init();
-		UM.alert("确认成功")
+//here is your code...
+summerready = function () {
+		  // =========================PhoneGap================================== 
+        // 等待加载PhoneGap 
+        document.addEventListener("deviceready", onDeviceReady, false); 
+        // PhoneGap加载完毕 
+        function onDeviceReady() { 
+                // 按钮事件 
+                document.addEventListener("backbutton", eventBackButton, false); // 返回键 
+        } 
+        // 返回键 
+        function eventBackButton() { 
+            UM.alert('5秒内再次点击返回键将退出应用!'); 
+            document.removeEventListener("backbutton", eventBackButton, false); // 注销返回键 
+            document.addEventListener("backbutton", exitApp, false);//绑定退出事件 
+            // 3秒后重新注册 
+            var intervalID = window.setInterval(function() { 
+                    window.clearInterval(intervalID); 
+                    document.removeEventListener("backbutton", exitApp, false); // 注销返回键 
+                    document.addEventListener("backbutton", eventBackButton, false); // 返回键 
+            }, 5000);                     
+        }      
+        function exitApp(){ 
+                summer.exitApp(); 
+        } 
+    
+		main.bindEvent();
+		//加载第一个页面
+		main.init();
+		app.initialize();
+	//$summer.byId("content").innerHTML += "<h1 style='text-align: center'>Hello friends, welcome to touch the summer frame!</h1><h2 style='text-align: center'>The frame update at " +(new Date()).toLocaleString()+"</h2>";
+};
+
+var initiateUI = function() {
+    try {
+        //初始化
+        window.plugins.jPushPlugin.init();
+        getRegistrationID();
+
+        if (device.platform != "Android") {
+            window.plugins.jPushPlugin.setDebugModeFromIos();
+            window.plugins.jPushPlugin.setApplicationIconBadgeNumber(0);
+        } else {
+            window.plugins.jPushPlugin.setDebugMode(true);
+            window.plugins.jPushPlugin.setStatisticsOpen(true);
+        }
+    } catch (exception) {
+        console.log(exception);
+    }
+};
+//获取注册ID
+var getRegistrationID = function() {
+    window.plugins.jPushPlugin.getRegistrationID(onGetRegistrationID);
+};
+var onGetRegistrationID = function(data) {
+    try {
+        console.log(data);
+        if (data.length == 0) {
+            var t1 = window.setTimeout(getRegistrationID, 1000);
+        }
+    } catch (exception) {
+        alert(exception);
+    }
+};
+// 打开通知
+var onOpenNotification = function(event) {
+    try {
+        var alertContent;
+        if (device.platform == "Android") {
+            alertContent = event.alert;
+        } else {
+            alertContent = event.aps.alert;
+        }
+        alert(alertContent);
+        if (event.extras.count == 3){
+            alert("即将打开百度");
+            location.href = "http://www.baidu.com"
+        }
+    } catch (exception) {
+        alert("JPushPlugin:onOpenNotification" + exception);
+    }
+};
+//获取通知内容
+var onReceiveNotification = function(event) {
+    try {
+        var alertContent;
+        if (device.platform == "Android") {
+            alertContent = event.alert;
+        } else {
+            alertContent = event.aps.alert;
+        }
+        alert(alertContent);
+    } catch (exception) {
+        alert(exception)
+    }
+};
+// 获取自定义消息推送内容
+/* var onReceiveMessage = function(event) {
+    try {
+        var message;
+        if (device.platform == "Android") {
+            message = event.message;
+        } else {
+            message = event.content;
+        }
+        alert(message);
+    } catch (exception) {
+        alert("JPushPlugin:onReceiveMessage" + exception);
+    }
+}; */
+function callBack(arg){
+	//UM.alert(JSON.stringify(arg));
+	if(arg.status == "0"){
+		main.initMainPage(arg.data);
+		main.initMyPage(arg.data);
 	}else{
-		UM.alert("确认失败："+args.message);
+		UM.alert(arg.message);
 	}
+	
 }
 function erresg(arg){
-	summer.hideProgress();
-	UM.alert("网络异常！");
+	UM.alert("失败");
+	UM.alert(JSON.stringify(arg));
 }
-summerready = function(){
-	feedAddToTower.init();
-	feedAddToTower.bindEvent();
+var app = {
+    // Application Constructor
+    initialize: function() {
+        this.bindEvents();
+    },
+    bindEvents: function() {
+        document.addEventListener('deviceready', this.onJPushDeviceReady, false);
+
+    },
+    onJPushDeviceReady: function() {
+        app.receivedEvent('deviceready');
+    },
+    receivedEvent: function(id) {
+        // 监听加载完成事件
+        document.addEventListener("deviceready", onJPushDeviceReady, false);
+        // 打开通知
+        document.addEventListener("jpush.openNotification", onOpenNotification, false);
+        // 获取通知内容
+        document.addEventListener("jpush.receiveNotification", onReceiveNotification, false);
+        // 获取自定义消息推送内容
+        //document.addEventListener("jpush.receiveMessage", onReceiveMessage, false);
+    }
+};
+// 开始
+var onJPushDeviceReady = function() {
+    initiateUI();
+};
+
+/**
+ * author:zhangjlt
+ * date:2016年8月22日22:30:42
+ */
+var main = {
+	/**
+	 * bindEvent 页面事件
+	 */
+	bindEvent: function () {
+		 $('#footer>a').click(function(){
+		 	var a=['数智圣农','数智圣农','我'];
+		 	$(this).addClass('active').siblings('.active').removeClass('active');
+			var tar=$(this).attr('data-tar');
+			$(tar).addClass('active').siblings('.active').removeClass('active');
+			var num=$(this).index(); 
+			$('#header h3').html(a[num]);
+		});	
+		$("#logoff").click(function(){
+			summer.openWin({
+				"id" : 'index',
+				"url" : 'index.html',
+			});
+		}); 
+		
+		$("#ing_version").click(function(){
+			ingVersion();//版本升级
+		});
+
+	},
+	init:function(){
+	   var usercode = $cache.read("userid");
+	   // 设置jpush标签和别名
+	   window.plugins.jPushPlugin.setAlias(usercode);
+	   var username = $cache.read("username");
+	   var pk_corp = $cache.read("pk_corp");
+		var json={
+			cuserid : usercode,
+			pk_corp : pk_corp ,
+			username : username
+		}
+		$service.callAction({
+			"viewid" : "com.sunnercn.login.LoginController", //后台带包名的Controller名
+			"action" : "role", //方法名,
+			"params" : json, //自定义参数
+			"callback" : "callBack()", //请求回来后执行的ActionID
+			"error" : "erresg()"//失败回调的ActionId
+		});
+	    
+	},
+	//应用界面加载
+	initMainPage:function(arg){
+		//1.调用接口 返回数据
+	    //$cache.write ("role","2");
+		//2.成功回调中处理数据 清空dom
+		$("#apply").html("");
+		//2.1 加载轮播图
+		main.loadBanner();
+		var logininfo = arg.logininfo;
+		$cache.write("logininfo",JSON.stringify(logininfo));
+		//2.2 成功回调中加载 用户信息
+		var username = arg.logininfo.userinfo.username;
+		var userChang = arg.logininfo.henneryinfo.hennery_name;
+		var userhtml = '<label class="um-label um-box-justify"><div style="padding-left: 15px;">'+userChang+'，'+ username+'，你好!</div> </label>';
+		$("#apply").append(userhtml);
+		
+		//2.3 加载场舍数据
+		main.loadChickenFarm(arg);
+		//2.4 加载应用图标
+		main.loadapp(arg.app);
+		
+	},
+	loadapp:function(appArray){
+		var list =appArray;
+		var data = {
+			id:"0",
+			name:"",
+			picname:"",
+			url:""
+		}
+		if(list.length%4 >0){
+			list.push(data); 
+		}
+		if(list.length%4 >0){
+			list.push(data); 
+		}
+		if(list.length%4 >0){
+			list.push(data); 
+		}
+		var html ='<div class="um-grid">';
+		for(var i=0;i<list.length;i++){
+			if(i%4 ==0){
+				html +='<div class="um-grid-row tc">';
+			}
+			var funcode = list[i].id;
+			list[i].resid;
+			if(funcode !=0){	
+			var str = list[i].name;
+			if(str.length >4){
+				var str1=str.substring(0,4);
+				var str2 = str.substr(4,4);
+				str = str1 +str2;
+			}
+			var helpNames = list[i].picname.split("@");
+			var imgName = helpNames[0];
+			var backColor = helpNames[1];
+			//设置按钮图标
+			html +='<div class="um-box-center um-click"  style="background:none;">'
+				  +'<div class="icon_box" style="width:55px;height:55px;background:rgba'+backColor+'">'
+				  +'<div class="icon" style="background-image:url(../img/btn/'+funcode+'.png);">'
+				  //+'<img src="../img/btn/'+funcode+'.png">'
+				  +'</div>'
+				  +'</div>'
+                  +' <a href="#" class="w85 h40 um-box-center click" funcode="'+list[i].id+'"  dataurl="'+list[i].url +'">'             
+                  +' <div>'                                          
+                  +' <div class="um-black f14"> '+str+' </div>'                      
+                  +' </div>'                          
+                  +'</a>'                      
+                  +' </div>'; 
+			}  else{
+				html +='<div></div>';
+			}                 
+			if(i%4==3){
+				html +='</div>';
+			}
+
+		}
+		html +='</div>';
+		$("#apply").append(html);
+		$(".um-click").click(function(){
+			var str =$(this).find('a').attr("dataurl");
+			var funcode=$(this).find('a').attr("funcode");
+			var url = 'html'+str;
+			summer.showProgress({"title" : "加载中..."});
+			summer.openWin({
+	            "id" : str,
+	            "url" : url,
+	            pageParam: {
+			        "type": funcode
+			    }
+	        });
+		});
+		
+	},
+
+	loadChickenFarm:function(arg){
+		var logininfostr = $cache.read("logininfo");
+		var logininfo = JSON.parse(logininfostr);
+		var farmdata = arg.farmdata;
+		var list=[];
+		var id;
+		var name;
+		var msg;
+		for(var i=0;i<farmdata.length;i++){
+			id=farmdata[i].id;
+			name=farmdata[i].name,
+			msg=farmdata[i].data
+			var json = {
+				id:id,
+				name:name,
+				data:msg
+			};
+			list.push(json);
+		}
+		var data = {
+			id:"0",
+			name:"",
+			data:""
+		}
+		if(list.length%2 >0){
+			list.push(data); 
+		}
+		var html = '<div style="margin-top: 5px "class="um-border-top" >';
+		for(var i =0;i<list.length;i++){
+			if(i%2==0){
+
+				html += '<div class="um-row  um-bgc-white um-border-bottom">'
+                       +'	<div class="um-xs-6 um-bgc-white p10 um-border-right">'
+                       +'		<p class="f14">'+list[i].name+'</p>'		
+                       +'		<p class="um-red f14">'+list[i].data+'</p>'		
+                       +'	</div>';	           	
+			}else{
+				if(list[i].id!=0){
+					html +='	<div class="um-xs-6 um-bgc-white p10 ">'
+					      +'		<p class="f14">'+list[i].name+'</p>'
+                      	  +'		<p class="um-red f14">'+list[i].data+'</p>'
+                      	  +'	</div>'	;
+				}else{
+					html +='	<div class="um-xs-6 um-bgc-white p10">' 
+						  +'	</div>'
+
+				}
+				html+='</div>';
+			}
+		}
+		html +='</div>';
+		$("#apply").append(html);
+
+	},
+	loadBanner:function(){
+		var html ='<div class="um-row"><div id="iSlider-wrapper" class="iSlider-wrapper"></div></div>';
+		$("#apply").append(html);
+
+		var list = [
+			{
+				content: "../img/g1.jpg"
+			}, 
+			{
+				content: "../img/g2.jpg"
+			}, 
+			{
+				content: "../img/g3.jpg"
+			}
+		];
+		var islider = new iSlider({
+			type: 'pic',
+			data: list,
+			dom: document.getElementById("iSlider-wrapper"),
+			isLooping: true,
+			animateType: 'default',
+			isAutoplay: true,
+			animateTime: 1000
+		});
+		islider.addDot();
+	},
+	// 我  界面加载
+	initMyPage:function(arg){
+		var logininfo = arg.logininfo;
+		//2.2 成功回调中加载 用户信息
+		var username = logininfo.userinfo.username;
+		var userChang = logininfo.henneryinfo.hennery_name;
+		$(".login_name").html(username);
+		$(".hennery_name").html(userChang);
+	},
+	// 消息界面加载
+	initMessagePage:function(){
+
+	}
+	
 };
