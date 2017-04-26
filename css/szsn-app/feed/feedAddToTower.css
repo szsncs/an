@@ -65,3 +65,14 @@ input[type="radio"]:checked ~ .um-icon-checkbox:before, input[type="checkbox"]:c
 	margin-top: 5px;
 	border-bottom:solid 0.2px #ccc;
 }
+.notInTower{
+    padding-left: 25px;
+    position: absolute;
+}
+.readyToTower{
+    position: absolute;
+    right: 10px;
+}
+.btn{
+	height:74px;
+}
