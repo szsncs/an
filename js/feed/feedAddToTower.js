@@ -41,7 +41,7 @@ var feedAddToTower = {
 		$("input[type='number']").on('blur', function() {
 			var oldnum = $(this).parent().parent().parent().parent().children("li").find("#readyToTower");
 			var readyToTower = 0.0;
-			input = $(this).parent().parent().children(".tower").find("input[type=number]");
+			input = $(this).parent().parent().parent().children(".towers").find("input[type=number]");
 			for(var i=0;i<input.length;i++){
 				readyToTower = eval(readyToTower+parseFloat(input[i].value));
 			}
