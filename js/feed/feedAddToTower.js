@@ -38,6 +38,12 @@ var feedAddToTower = {
 			var lis = $(this).parent().parent().parent().find("li");
 			lis.length>2?lis[lis.length-2].remove():UM.alert("对不起！请至少选一个料塔！");
 		});
+		$("input[type='number']").on('blur', function() {
+			var readyToTower = $(this).parent().parent().parent().parent().children("li").find("#readyToTower");
+			var oldnum = parseFloat(readyToTower.text());
+			var num = parseFloat($(this).val());
+			readyToTower.text(eval(oldnum+num));
+		});
 		$("#btn-save").unbind().on('click',feedAddToTower.confirmAddFeed);
 	},
 	confirmAddFeed:function(){
