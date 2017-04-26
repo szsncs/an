@@ -40,10 +40,10 @@ var feedAddToTower = {
 			var pk_inbill = $(this).attr("pk_inbill");
 			var div_bo = $(this).parent().parent().parent().parent();
 			var silos = [];
-			var carno = div_bo.children("#carno").text();//车牌号
-			var notInTower = parseFloat(div_bo.children("#notInTower").text().trim());//未打料量
+			var carno = div_bo.find("#carno").text();//车牌号
+			var notInTower = parseFloat(div_bo.find("#notInTower").text().trim());//未打料量
 			var readyToTower = 0.0;//准备打料总量
-			var allnuminput = div_bo.children("input[type=number]");
+			var allnuminput = div_bo.children("ul").find("input[type=number]");
 			allnuminput.each(function(){
 				readyToTower=eval(readyToTower+parseFloat(this.value));
 				if(this.value==0){
@@ -55,10 +55,10 @@ var feedAddToTower = {
 					return confirmAddFeed();
 				}
 			});
-			div_bo.find(".siloSelect option:selected").each(function(){
+			div_bo.children("ul").find(".siloSelect option:selected").each(function(){
 				var obj = {
 					pk_silo:this.getAttribute("pk_silo"),
-					num:$(this).parent().parent().parent().children(".num input").val()
+					num:$(this).parent().parent().parent().children("ul").find(".num input").val()
 				};
 				silos.push(obj);
 			});
@@ -136,7 +136,7 @@ var feedAddToTower = {
 					+'<select class ="siloSelect"></select>'
 					+'</div>'
 					+'<div class="num">'
-					+'数量 <input type="number" value="'+inbill[i].notInTower+'"/> 吨'
+					+'数量 <input type="number"/> 吨'
 					+'</div>'
 					+'</li>'
 					+'<li>'
