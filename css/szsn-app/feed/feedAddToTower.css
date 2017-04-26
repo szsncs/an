@@ -22,6 +22,7 @@ input[type="number"]{
 	height:30px;
 	border-radius: 8px;
 	border: solid 1px #ccc;
+	font-size:15px;
 }
 .allTower li{
 	margin: 10px;
@@ -63,7 +64,4 @@ input[type="radio"]:checked ~ .um-icon-checkbox:before, input[type="checkbox"]:c
 	border-radius: 18px;
 	margin-top: 5px;
 	border-bottom:solid 0.2px #ccc;
-}
-.um-list .um-list{
-	padding-left:15px;
 }
