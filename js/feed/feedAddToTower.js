@@ -103,7 +103,7 @@ var feedAddToTower = {
 			summer.showProgress({
 	            "title" : "加载中..."
 	        });
-	        var flag = confirm("确认后将无法修改数量，确定提交吗？");
+	        var flag = UM.confirm("确认后将无法修改数量，确定提交吗？");
 			//确认打料 请求
 	       	if(flag)
 	       		callAction(feedAddToTower.viewid,"confirmAddFeedToTower",json,"confirmcallBack");
