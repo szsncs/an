@@ -28,7 +28,7 @@ var feedAddToTower = {
 			var li = "<li class='towers'>";
 			li+=$($(".towers")[0]).html();
 			li+="</li>";
-			$(this).parent().parent().find(".towers tower").length<siloinfoList.length?$(this).parent().parent().before($(li)):UM.alert("没有更多料塔！");
+			$(this).parent().parent().parent().find(".tower").length<siloinfoList.length?$(this).parent().parent().before($(li)):UM.alert("没有更多料塔！");
 		});
 		$(".ti-minus").unbind().on('click',function(){
 			// to do 行数限制
