@@ -42,6 +42,7 @@ var feedAddToTower = {
 		});
 		$("input[type='number']").on('blur', feedAddToTower.calNum);
 		$("#btn-save").unbind().on('click',feedAddToTower.confirmAddFeed);
+		$(".sk_refresh").unbind().on('click',feedAddToTower.init);
 	},
 	calNum:function(){
 		var oldnum = $(this).parent().parent().parent().parent().children("li").find("#readyToTower");
