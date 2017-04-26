@@ -39,7 +39,6 @@ var feedAddToTower = {
 			var lis = $(this).parent().parent().parent().find("li");
 			lis.length>2?lis[lis.length-2].remove():UM.alert("对不起！请至少选一个料塔！");
 			$($(this).parent().parent().parent().children("li").find("input[type=number]")[0]).blur();
-			$(selector).blur();
 		});
 		$("input[type='number']").on('blur', feedAddToTower.calNum);
 		$("#btn-save").unbind().on('click',feedAddToTower.confirmAddFeed);
@@ -49,7 +48,7 @@ var feedAddToTower = {
 		var readyToTower = 0.0;
 		input = $(this).parent().parent().parent().children(".towers").find("input[type=number]");
 		for(var i=0;i<input.length;i++){
-			readyToTower = eval(readyToTower+parseFloat(input[i].value));
+			readyToTower = eval(readyToTower+parseFloat(input[i].value?input[i].value:0));
 		}
 		oldnum.text(readyToTower);
 	},
