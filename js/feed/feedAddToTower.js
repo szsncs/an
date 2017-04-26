@@ -58,7 +58,7 @@ var feedAddToTower = {
 			div_bo.children("ul").find(".siloSelect option:selected").each(function(){
 				var obj = {
 					pk_silo:this.getAttribute("pk_silo"),
-					num:$(this).parent().parent().parent().children("ul").find(".num input").val()
+					num:$(this).parent().parent().parent().find(".num input").val()
 				};
 				silos.push(obj);
 			});
