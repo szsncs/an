@@ -39,10 +39,12 @@ var feedAddToTower = {
 			lis.length>2?lis[lis.length-2].remove():UM.alert("对不起！请至少选一个料塔！");
 		});
 		$("input[type='number']").on('blur', function() {
-			var readyToTower = $(this).parent().parent().parent().parent().children("li").find("#readyToTower");
-			var oldnum = parseFloat(readyToTower.text());
-			var num = parseFloat($(this).val());
-			readyToTower.text(eval(oldnum+num));
+			var readyToTower = 0.0;
+			input = $(this).parent().parent().children(".tower").find("input[type=number]")
+			for(var i=0;i<input.length;i++){
+				readyToTower = eval(readyToTower+parseFloat(input[i].value));
+			}
+			readyToTower.text(readyToTower);
 		});
 		$("#btn-save").unbind().on('click',feedAddToTower.confirmAddFeed);
 	},
@@ -156,7 +158,7 @@ var feedAddToTower = {
 					+'未打料数量：<span id="notInTower">'+inbill[i].notInTower+'</span>吨'
 					+'</p>'
 					+'<p class="readyToTower">'
-					+'准备打料数量：<span id="readyToTower">0</span>吨'
+					+'准备打料数量：<span id="readyToTower">'+inbill[i].notInTower+'</span>吨'
 					+'</p>'
 					+'</div> </a>'
 					+'</li>'
