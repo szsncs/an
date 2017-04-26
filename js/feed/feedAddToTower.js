@@ -111,9 +111,6 @@ var feedAddToTower = {
 				billinfo:array,
 				logininfo:lonininfo
 			}
-			summer.showProgress({
-	            "title" : "加载中..."
-	        });
 			//确认打料 请求
 			UM.confirm({
                 "title" : "打料确认",
@@ -121,6 +118,7 @@ var feedAddToTower = {
                 "btnText" : ["确认","取消"],
                 "overlay" : true,
                 "cancle" :function(){
+			        summer.showProgress({"title" : "加载中..."});
                     callAction(feedAddToTower.viewid,"confirmAddFeedToTower",json,"confirmcallBack");
                 },
                 "ok" :function(){
