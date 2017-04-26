@@ -30,7 +30,7 @@ var feedAddToTower = {
 			li+=$($(".towers")[0]).html();
 			li+="</li>";
 			$li=$(li);
-			$($li.find(".siloSelect")[0].options[size-1]).attr("selected","selected");
+			$($li.find(".siloSelect")[0].options[size-2]).attr("selected","selected");
 			size<siloinfoList.length?$(this).parent().parent().before($li):UM.alert("没有更多料塔！");
 		});
 		$(".ti-minus").unbind().on('click',function(){
