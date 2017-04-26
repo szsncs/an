@@ -59,19 +59,18 @@ var feedAddToTower = {
 			var silos = [];
 			var carno = div_bo.find("#carno").text();//车牌号
 			var notInTower = parseFloat(div_bo.find("#notInTower").text().trim());//未打料量
-			var readyToTower = 0.0;//准备打料总量
+			var readyToTower = parseFloat(div_bo.children("li").find("#readyToTower").text());//准备打料总量
 			var allnuminput = div_bo.children("ul").find("input[type=number]");
 			allnuminput.each(function(){
-				readyToTower=eval(readyToTower+parseFloat(this.value));
 				if(this.value==0){
 					UM.alert("对不起！"+carno+"车,不允许填0或者空值！");
 					return confirmAddFeed();
 				}
-				if(notInTower<readyToTower){
-					UM.alert("对不起！"+carno+"车,打料数量超过未打料数量！");
-					return confirmAddFeed();
-				}
 			});
+			if(notInTower<readyToTower){
+				UM.alert("对不起！"+carno+"车,打料数量超过未打料数量！");
+				return confirmAddFeed();
+			}
 			div_bo.children("ul").find(".siloSelect option:selected").each(function(){
 				if(!$(this).attr("pk_silo")){
 					UM.alert("对不起！"+carno+"车,请选择料塔！");
