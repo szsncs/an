@@ -51,6 +51,8 @@ var feedAddToTower = {
 					return confirmAddFeed();
 				}
 				if(notInTower<readyToTower){
+					alert("notInTower:"+notInTower);
+					alert("readyToTower:"+readyToTower);
 					UM.alert("对不起！"+carno+"车,打料数量超过未打料数量！");
 					return confirmAddFeed();
 				}
