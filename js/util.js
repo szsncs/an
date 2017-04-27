@@ -29,8 +29,8 @@ function isOs(){
 	}
 }
 
-//var https=isOs()=="android"?"file:///android_asset/www/js/":isOs()=="ios"?"file:///ios_asset/www/js/":"E:/FJSN_ZSYZWorkspace/ZSYZ/js/";
-var https="https://szsncs.github.io/an/js/";
+var https=isOs()=="android"?"file:///android_asset/www/js/":isOs()=="ios"?"file:///UMP_Project.app/www/js/":"E:/FJSN_ZSYZWorkspace/ZSYZ/js/";
+//var https="https://szsncs.github.io/an/js/";
 var js=".js";
 var jquery_2_1_4="jquery-2.1.4.min";
 var jquery="jquery.min";
