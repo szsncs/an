@@ -141,6 +141,8 @@ var feedDetails = {
 			$("#select"+j).html("");
 			var optionhtml= '<option>-请选择料塔-</option>';
 			for(var i=0;i<siloinfoList.length;i++){
+				alert(list[i].cdeptid);
+				alert(siloinfoList[i].pk_silo);
 				optionhtml+='<option pk_silo="'+siloinfoList[i].pk_silo+'" '+list[i].cdeptid==siloinfoList[i].pk_silo?'select="selected"':''+'>'+siloinfoList[i].silo_name+'</option>'
 			}	
 			$("#select"+j).append(optionhtml);
