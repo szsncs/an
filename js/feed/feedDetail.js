@@ -130,7 +130,7 @@ var feedDetails = {
 			var optionhtml= '<option>-请选择料塔-</option>';
 			for(var i=0;i<siloinfoList.length;i++){
 				if(list[i].cdeptid==siloinfoList[i].pk_silo){
-					optionhtml+='<option pk_silo="'+siloinfoList[i].pk_silo+'"select="selected"'>'+siloinfoList[i].silo_name+'</option>'
+					optionhtml+='<option pk_silo="'+siloinfoList[i].pk_silo+'select="selected"'>'+siloinfoList[i].silo_name+'</option>'
 				}else{
 					optionhtml+='<option pk_silo="'+siloinfoList[i].pk_silo+'>'+siloinfoList[i].silo_name+'</option>'
 				}
