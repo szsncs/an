@@ -129,8 +129,8 @@ var feedDetails = {
 			$("#select"+j).html("");
 			var optionhtml= '<option>-请选择料塔-</option>';
 			for(var i=0;i<siloinfoList.length;i++){
-				list[i].cdeptid==siloinfoList[i].pk_silo?alert(list[i].cdeptid):console.log(list[i].cdeptid);
-				optionhtml+='<option pk_silo="'+siloinfoList[i].pk_silo+'" '+list[i].cdeptid==siloinfoList[i].pk_silo?'select="selected"':''+'>'+siloinfoList[i].silo_name+'</option>'
+				list[j].cdeptid==siloinfoList[i].pk_silo?alert(list[j].cdeptid):console.log(list[i].cdeptid);
+				optionhtml+='<option pk_silo="'+siloinfoList[i].pk_silo+'" '+list[j].cdeptid==siloinfoList[i].pk_silo?'select="selected"':''+'>'+siloinfoList[i].silo_name+'</option>'
 			}	
 			$("#select"+j).append(optionhtml);
 		}
