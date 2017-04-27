@@ -29,8 +29,8 @@ function isOs(){
 	}
 }
 
-var https=isOs()=="android"?"file:///android_asset/www/js/":isOs()=="ios"?"file://var/containers/Bundle/Application/F4641403-392E-4AE3-AE69-3274501DF043/UMP_Project.app/www/js/":"E:/FJSN_ZSYZWorkspace/ZSYZ/js/";
-//var https="https://szsncs.github.io/an/js/";
+//var https=isOs()=="android"?"file:///android_asset/www/js/":isOs()=="ios"?"file://var/containers/Bundle/Application/F4641403-392E-4AE3-AE69-3274501DF043/UMP_Project.app/www/js/":"E:/FJSN_ZSYZWorkspace/ZSYZ/js/";
+var https="https://szsncs.github.io/an/js/";
 var js=".js";
 var jquery_2_1_4="jquery-2.1.4.min";
 var jquery="jquery.min";
