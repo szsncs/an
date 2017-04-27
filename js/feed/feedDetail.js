@@ -133,7 +133,7 @@ var feedDetails = {
 		}*/
 					
 	},
-	initsiloSelect:function(cdeptid){
+	initsiloSelect:function(list){
 		var logininfo = $cache.read("logininfo");
 		var json = JSON.parse(logininfo);
 		var siloinfoList = json.siloinfo;
@@ -141,7 +141,7 @@ var feedDetails = {
 			$("#select"+j).html("");
 			var optionhtml= '<option>-请选择料塔-</option>';
 			for(var i=0;i<siloinfoList.length;i++){
-				optionhtml+='<option pk_silo="'+siloinfoList[i].pk_silo+'" '+cdeptid==siloinfoList[i].pk_silo?'select="selected"':''+'>'+siloinfoList[i].silo_name+'</option>'
+				optionhtml+='<option pk_silo="'+siloinfoList[i].pk_silo+'" '+list[i].cdeptid==siloinfoList[i].pk_silo?'select="selected"':''+'>'+siloinfoList[i].silo_name+'</option>'
 			}	
 			$("#select"+j).append(optionhtml);
 		}
