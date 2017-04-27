@@ -2,7 +2,8 @@
 var feedArrived = {
 	viewid : "com.sunnercn.feed.TransferEntryController",
 	init:function(){
-		alert(window.location.pathname.split("UMP_Project.app/www/js/")[0]);
+		alert("1");
+		alert(window.location.pathname.split("UMP_Project.app/www/")[0]+"UMP_Project.app/www/");
 		var data = $cache.read("logininfo");
 		var lonininfo = JSON.parse(data);
 		var json = {
