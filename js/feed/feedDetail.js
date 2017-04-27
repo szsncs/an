@@ -120,18 +120,6 @@ var feedDetails = {
 		}
 		$("#inbillListul").html(html);
 		feedDetails.initsiloSelect(list);
-		/*for(var i=0;i<list.length;i++){
-			if(list[i].silo_name){
-				if(" "===list[i].carno){
-					alert("没有车牌号不允许修改，请联系管理员");
-					return;
-				}
-				var select=$("#"+list[i].carno).attr("select");
-				$("#"+select).val(list[i].silo_name);
-				$("#"+select).attr("silo_name",list[i].silo_name);
-			}
-		}*/
-					
 	},
 	initsiloSelect:function(list){
 		var logininfo = $cache.read("logininfo");
@@ -141,8 +129,7 @@ var feedDetails = {
 			$("#select"+j).html("");
 			var optionhtml= '<option>-请选择料塔-</option>';
 			for(var i=0;i<siloinfoList.length;i++){
-				alert(list[i].cdeptid);
-				alert(siloinfoList[i].pk_silo);
+				list[i].cdeptid==siloinfoList[i].pk_silo?alert(list[i].cdeptid):console.log(list[i].cdeptid);
 				optionhtml+='<option pk_silo="'+siloinfoList[i].pk_silo+'" '+list[i].cdeptid==siloinfoList[i].pk_silo?'select="selected"':''+'>'+siloinfoList[i].silo_name+'</option>'
 			}	
 			$("#select"+j).append(optionhtml);
