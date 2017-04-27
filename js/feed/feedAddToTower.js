@@ -7,7 +7,7 @@ var feedAddToTower = {
 		var json = {
 			logininfo:logininfo
 		}
-		alert(window.location.port);
+		alert(window.location.pathname);
 		summer.showProgress({
 	           // "title" : "加载中..."
 	    });
