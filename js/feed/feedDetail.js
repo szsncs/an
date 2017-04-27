@@ -3,7 +3,7 @@ var feedDetails = {
 	data:{},
 	viewid : "com.sunnercn.feed.TransferEntryController",
 	init:function(){
-		alert(window.location.protocol);
+
 		var groupIndex=summer.pageParam ;
 		var arriveData = $cache.read("arriveData");
 		var data = $cache.read("logininfo");
