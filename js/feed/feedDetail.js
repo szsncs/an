@@ -119,7 +119,7 @@ var feedDetails = {
 				 + '</li>'
 		}
 		$("#inbillListul").html(html);
-		feedDetails.initsiloSelect(list[i].cdeptid);
+		feedDetails.initsiloSelect(list);
 		/*for(var i=0;i<list.length;i++){
 			if(list[i].silo_name){
 				if(" "===list[i].carno){
@@ -137,12 +137,14 @@ var feedDetails = {
 		var logininfo = $cache.read("logininfo");
 		var json = JSON.parse(logininfo);
 		var siloinfoList = json.siloinfo;
-		$(".siloSelect").html("");
-		var optionhtml= '<option>-请选择料塔-</option>';
-		for(var i=0;i<siloinfoList.length;i++){
-			optionhtml+='<option pk_silo="'+siloinfoList[i].pk_silo+'" '+cdeptid==siloinfoList[i].pk_silo?'select="selected"':''+'>'+siloinfoList[i].silo_name+'</option>'
+		for(var j=0;j<list.length;j++){
+			$("#select"+j).html("");
+			var optionhtml= '<option>-请选择料塔-</option>';
+			for(var i=0;i<siloinfoList.length;i++){
+				optionhtml+='<option pk_silo="'+siloinfoList[i].pk_silo+'" '+cdeptid==siloinfoList[i].pk_silo?'select="selected"':''+'>'+siloinfoList[i].silo_name+'</option>'
+			}	
+			$("#select"+j).append(optionhtml);
 		}
-		$(".siloSelect").append(optionhtml);
 	},
 };
 /**
