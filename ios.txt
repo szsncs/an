@@ -1,0 +1,1 @@
+http://mbs.yyuap.com:8080/ump/web/appdownload/download?type=ios&buildId=49408&fileName=ZSYZ.plist
