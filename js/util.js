@@ -340,6 +340,12 @@ function getIndex_js(url){//引入登录界面js	2
 	return jquery_min_2_1_4.concat(index_js.concat(yonyou_js));				
 }
 
+
+var andriodUrl="http://112.5.82.146:8008/umserver/ZSYZ.apk";
+var iosUrl="http://mbs.yyuap.com:8080/ump/web/appdownload/download?type=ios&buildId=49408&fileName=ZSYZ.plist";
+var version=1.0.0;
+
+
 /**
  * 调用接口方法 对$summer.callAction({})的封装 
  * @param {Object} viewid
