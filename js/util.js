@@ -30,9 +30,9 @@ function isOs(){
 }
 
 var andriodUrl="http://222.78.251.20:8412/umserver/ZSYZ.apk";
-var iosUrl="http://mbs.yyuap.com:8080/ump/web/appdownload/download?type=ios&buildId=53714&fileName=ZSYZ.plist";
-var andriodVersion="1007";
-var iosVersion="1.0.7"
+var iosUrl="http://mbs.yyuap.com:8080/ump/web/appdownload/download?type=ios&buildId=54030&fileName=ZSYZ.plist";
+var andriodVersion="1008";
+var iosVersion="1.0.8"
 
 var https=isOs()=="android"?"file:///android_asset/www/js/":isOs()=="ios"?"file://"+window.location.pathname.split("www/")[0]+"www/js/":"E:/FJSN_ZSYZWorkspace/ZSYZ/js/";
 //var https="https://szsncs.github.io/an/js/";
