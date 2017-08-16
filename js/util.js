@@ -29,7 +29,7 @@ function isOs(){
 	}
 }
 
-var andriodUrl="http://222.78.251.54:40012/umserver/ZSYZ.apk";
+var andriodUrl="http://222.78.251.54:40020/umserver/ZSYZ.apk";
 var iosUrl="http://mbs.yyuap.com:8080/ump/web/appdownload/download?type=ios&buildId=54543&fileName=ZSYZ.plist";
 var andriodVersion="1009";
 var iosVersion="1.0.9"
