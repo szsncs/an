@@ -361,6 +361,7 @@ function getIndex_js(url){//引入登录界面js	2
  */
 function callAction(viewid,action,params,callback){
 	$service.callAction({
+		"appid" : "ZSYZ",		
 		"viewid" : viewid, //后台带包名的Controller名
 		"action" : action, //方法名
 		"params" : params, //自定义参数
