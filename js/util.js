@@ -385,6 +385,7 @@ function callAction(viewid,action,params,callback){
  */
 function callActionContainsFile(viewid,action,filepath,params,callback){
 	$service.callAction({
+		"appid" : "ZSYZ",
 		"viewid" : viewid, //后台带包名的Controller名
 		"action" : action, //方法名,
 		"mauploadpath" : filepath,
